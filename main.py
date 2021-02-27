@@ -2,7 +2,6 @@ import pygame
 import sys, random
 from pygame import mouse
 
-from pygame.constants import BUTTON_X1
 from settings import *
 from player import *
 from Mobs import *
