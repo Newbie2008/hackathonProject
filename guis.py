@@ -53,13 +53,15 @@ class Button(pygame.sprite.Sprite):
         self.text = text
         self.color = color
         self.font_size = font_size
-        self.rect = self.img.get_rect()
+        self.width = width
+        self.height = height
         self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
         if img == None:
             self.img = pygame.Surface((width * TILESIZE, height * TILESIZE))
             self.img.fill(color)
         else:
             self.img = pygame.image.load(img)
+        self.rect = self.img.get_rect()
 
     def update(self):
         self.events()
@@ -75,11 +77,11 @@ class Button(pygame.sprite.Sprite):
                 if event.button == 1:
                     pass
 
-class Mouse(pygame.sprite.Sprite):
+class Mouse():
 
     def __init__(self, pos, game, image=None):
-        self.groups = game.all_sprites
-        self.x, self.y = pos 
+        self.x, self.y = pos
+        self.game = game 
         pygame.mouse.set_visible(False)
         if image != None:
             self.img = image
@@ -91,3 +93,4 @@ class Mouse(pygame.sprite.Sprite):
     
     def update(self):
         self.rect.center = pygame.mouse.get_pos()
+        self.game.screen.blit(self.img, self.rect)

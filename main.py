@@ -53,6 +53,7 @@ class Game:
                     pass
         self.camera = Camera(self.map.width, self.map.height)
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
+        self.saveMenu = saveMenu(self)
     
     def run(self):
         self.playing = True
@@ -63,6 +64,7 @@ class Game:
             self.events()
 
     def update(self):
+        self.mouse.update()
         self.all_sprites.update()
         self.camera.update(self.player)
 
@@ -105,4 +107,5 @@ class Game:
 g = Game()
 while True:
     g.new()
+    g.saveMenu.load_save()
     g.run()
