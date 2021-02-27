@@ -9,7 +9,7 @@ class Particle(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.x = x
         self.y = y
-        self.timeOnscreen = 100
+        self.timeOnscreen = random.randint(5, 7)
         if img:
             self.image = pygame.image.load(img)
         else:
@@ -20,10 +20,14 @@ class Particle(pygame.sprite.Sprite):
         
     def update(self):
         self.rect.center = self.x, self.y
-        #self.timeOnscreen -= 1
-        #if self.timeOnscreen <= 0:
-        #    self.kill
+        self.timeOnscreen -= 1
+        print(self.timeOnscreen)
+        if self.timeOnscreen <= 0:
+            self.kill()
+            self.timeOnscreen = 0
         self.animate()
     
     def animate(self):
-        self.image = pygame.transform.rotate(self.image, 25, 1)
+        self.x += random.randint(-2, 2)
+        self.y += random.randint(-2, 2)
+        pygame.transform.rotate(self.image, 25)

@@ -96,7 +96,7 @@ class Bullet(pygame.sprite.Sprite):
             self.y += self.vely  # * self.game.dt
         self.rect.center = self.x, self.y
         if pygame.sprite.spritecollideany(self, self.game.walls):
-            for x in range(random.randint(1, 8)):
+            for x in range(random.randint(PARTICLELIMIT/2, PARTICLELIMIT)):
                 Particle(self.game, self.x + random.randint(-10, 10), self.y + random.randint(-10,10))
             self.kill()
         
