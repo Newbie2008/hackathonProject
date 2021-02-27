@@ -53,6 +53,8 @@
   padding: 20px 10px;
   width: 100%;
   z-index: 2;
+  background-color: #505050;
+  transition: top 0.3s;
 }
 
 nav ul {
@@ -219,6 +221,7 @@ nav img {
 #team p {
   color: black;
   font-size: 18px;
+  padding-bottom: 80px;
 }
 
 #team h2 {
