@@ -188,7 +188,6 @@ nav img {
 
 /* END DEVLOGS SECTION */
 
-
 #download {
   text-align: center;
   margin-top: 50px;
@@ -209,3 +208,20 @@ nav img {
 }
 
 /* END DOWNLOAD SECTION */
+
+/* TEAM SECTION */
+
+#team {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#team p {
+  color: black;
+  font-size: 18px;
+}
+
+#team h2 {
+  color: black;
+  font-size: 30px;
+}
