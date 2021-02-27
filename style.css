@@ -37,6 +37,7 @@
 
 .one-of-three {
   width: 33.33%;
+  float: left;
 }
 /* HEADER BEGINS HERE */
 
@@ -154,6 +155,8 @@ nav img {
   font-weight: 300;
   color: black;
 }
+
+/* BENEFITS SECTION */
 
 #benefits {
   text-align: center;
