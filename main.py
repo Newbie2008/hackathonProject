@@ -1,5 +1,6 @@
 import pygame
 import sys, random
+from pygame import mouse
 
 from pygame.constants import BUTTON_X1
 from settings import *
@@ -79,16 +80,17 @@ class Game:
         self.screen.fill(BACKGROUND_COLOR)
         for sprite in self.all_sprites:
             self.screen.blit(sprite.image, self.camera.apply(sprite))
+        self.screen.blit(self.mouse.img, self.mouse.rect)
         pygame.display.flip()
 
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.saveMenu.show_save_screen()
+                #self.saveMenu.show_save_screen()
                 self.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.saveMenu.show_save_screen()
+                    #self.saveMenu.show_save_screen()
                     self.quit()
             
                 if event.key == pygame.K_SPACE and self.player.weapon != "none":
@@ -104,6 +106,10 @@ class Game:
 
                         if self.player.left is True:
                             Bullet(self,self.player.rect.centerx,self.player.rect.centery,-10,0,)
+        
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    print('test')
 
 
 g = Game()
