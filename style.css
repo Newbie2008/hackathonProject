@@ -110,3 +110,43 @@ nav img {
 }
 
 /* ABOUT SECTION */
+
+#about img {
+  width: 100%;
+  float: right;
+}
+
+#about .circle {
+  border: 1px solid lightgray;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: relative;
+  float: left;
+}
+
+#about .circle p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: gray;
+  font-weight: 300;
+}
+
+#about .steps-container {
+  overflow: auto;
+  margin-bottom: 70px;
+  margin-left: 50px;
+}
+
+#about .steps-container h2 {
+  font-size: 25px;
+  color: black;
+}
+
+#about .steps-description {
+  font-weight: 300;
+  color: black;
+}
