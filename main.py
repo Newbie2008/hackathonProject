@@ -93,13 +93,13 @@ class Game:
                             Bullet(self,self.player.rect.centerx,self.player.rect.centery,0,-10,)
 
                         if self.player.down is True:
-                            Bullet(self,self.player.rect.centerx,self.player.rect.centery,0,-10,)
+                            Bullet(self,self.player.rect.centerx,self.player.rect.centery,0,10,)
 
                         if self.player.right is True:
-                            Bullet(self,self.player.rect.centerx,self.player.rect.centery,0,-10,)
+                            Bullet(self,self.player.rect.centerx,self.player.rect.centery,10,0,)
 
                         if self.player.left is True:
-                            Bullet(self,self.player.rect.centerx,self.player.rect.centery,0,-10,)
+                            Bullet(self,self.player.rect.centerx,self.player.rect.centery,-10,0,)
 
 
 g = Game()

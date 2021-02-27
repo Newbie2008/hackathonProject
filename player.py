@@ -27,7 +27,7 @@ class Player(pygame.sprite.Sprite):
 
     def move(self, dx, dy):
         self.moveDelay += 1
-        if self.moveDelay >= 8 and not self.collide_with_walls(dx, dy):
+        if self.moveDelay >= PLAYER_SPEED and not self.collide_with_walls(dx, dy):
             self.x += dx
             self.y += dy
             self.moveDelay = 0
