@@ -185,3 +185,13 @@ nav img {
   font-size: 30px;
   margin-bottom: 25px;
 }
+
+/* END DEVLOGS SECTION */
+#download {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#download a {
+  color: black;
+}
