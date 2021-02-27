@@ -86,9 +86,6 @@ class Game:
             if event.type == pygame.QUIT:
                 self.saveMenu.show_save_screen()
                 self.quit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    self.mouse.mousedown = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.saveMenu.show_save_screen()
@@ -112,5 +109,5 @@ class Game:
 g = Game()
 while True:
     g.new()
-    g.saveMenu.load_save()
+    #g.saveMenu.menu()
     g.run()

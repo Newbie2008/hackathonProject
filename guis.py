@@ -93,5 +93,21 @@ class Mouse():
         self.rect = self.img.get_rect()
     
     def update(self):
+        self.events()
         self.rect.center = pygame.mouse.get_pos()
         self.game.screen.blit(self.img, self.rect)
+
+    def events(self):
+        #print(self.mousedown)
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    self.mousedown == True
+                    print('test')
+                
+                else:
+                    print('why')
+            
+            if event.type == pygame.MOUSEBUTTONUP:
+                self.mousedown = False
+                print('up')
