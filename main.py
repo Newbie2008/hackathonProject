@@ -1,6 +1,8 @@
 import pygame
 import sys, random
 from settings import *
+from player import *
+from mobs import *
 
 class Game:
     def __init__(self):
