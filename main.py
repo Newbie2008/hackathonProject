@@ -72,8 +72,8 @@ class Game:
 
     def update(self):
         self.mouse.update()
-        if not self.player.Battling:
-            self.all_sprites.update()
+        #if not self.player.Battling:
+        self.all_sprites.update()
         self.camera.update(self.player)
 
     def quit(self):
@@ -83,10 +83,10 @@ class Game:
 
     def draw(self):
         self.screen.fill(BACKGROUND_COLOR)
-        if not self.battle.Battling:
+        if self.battle.Battling == False:
             for sprite in self.all_sprites:
-                self.screen.fill(BACKGROUND_COLOR)
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
+            pygame.display.flip()
         else:
             self.screen.fill(BACKGROUND_COLOR)
             self.screen.blit(self.battle.playerimg, (0, HEIGHT -TILESIZE * 20))

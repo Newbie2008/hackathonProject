@@ -9,11 +9,11 @@ class Particle(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.x = x
         self.y = y
-        self.timeOnscreen = random.randint(5, 7)
+        self.timeOnscreen = random.randint(3, 5)
         if img:
             self.image = pygame.image.load(img)
         else:
-            self.image = pygame.Surface((TILESIZE/2, TILESIZE/2))
+            self.image = pygame.Surface((TILESIZE/4, TILESIZE/4))
             self.image.fill(WHITE)
         
         self.rect = self.image.get_rect()
@@ -21,7 +21,6 @@ class Particle(pygame.sprite.Sprite):
     def update(self):
         self.rect.center = self.x, self.y
         self.timeOnscreen -= 1
-        print(self.timeOnscreen)
         if self.timeOnscreen <= 0:
             self.kill()
             self.timeOnscreen = 0
