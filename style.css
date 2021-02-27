@@ -174,3 +174,14 @@ nav img {
   font-size: 18px;
   margin-bottom: 30px;
 }
+
+#devlogs {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#devlogs h1 {
+  color: black;
+  font-size: 30px;
+  margin-bottom: 25px;
+}
