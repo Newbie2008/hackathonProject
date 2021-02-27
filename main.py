@@ -58,7 +58,7 @@ class Game:
         self.camera = Camera(self.map.width, self.map.height)
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
         self.saveMenu = saveMenu(self)
-        self.battle = self.BattleSystem(self)
+        self.battle = BattleSystem(self)
         #self.saveMenu.load_save()
     
     def run(self):
