@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.right = False
         self.weapon = weapon
         self.moveDelay = 0
+        self.Battling = False
 
     def update(self):
         self.collide_etc()
@@ -73,6 +74,14 @@ class Player(pygame.sprite.Sprite):
     def collide_etc(self):
         if pygame.sprite.spritecollideany(self, self.game.mobs):
             self.health -= 1
+    
+    def battle(self, mob):
+        self.Battling = True
+        while self.Battling:
+            playerimg = pygame.Surface((TILESIZE * 4, TILESIZE * 4))
+            self.game.events()
+            self.game.update()
+            self.game.draw()
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, game, x, y, velx, vely):

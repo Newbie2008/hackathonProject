@@ -23,7 +23,6 @@ class saveMenu:
             if self.game.mouse.CollideButton(self.Savebutton):
                 self.menu = False
                 self.keyboardInput(Keyboard(self.Savebutton.x, self.Savebutton.y, self.Savebutton.width, self.Savebutton.height, self.game, None))
-                #have to add keyboard here
             self.game.screen.fill(BACKGROUND_COLOR)
             self.Savebutton.update()
             self.game.screen.blit(self.game.mouse.img, self.game.mouse.rect)
