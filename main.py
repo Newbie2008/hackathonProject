@@ -82,7 +82,7 @@ class Game:
 
     def draw(self, playerimg=None, mobimg=None):
         self.screen.fill(BACKGROUND_COLOR)
-        if not self.player.Battling:
+        if not self.battle.Battling:
             for sprite in self.all_sprites:
                 self.screen.fill(BACKGROUND_COLOR)
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
