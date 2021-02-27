@@ -38,7 +38,7 @@
 /* HEADER BEGINS HERE */
 
 #header {
-  background-image: url(../images/background.png);
+  background-image: url(images/background.png);
   height: 100vh;
   background-size: cover;
   position: relative;
