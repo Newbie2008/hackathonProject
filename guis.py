@@ -82,6 +82,7 @@ class Mouse():
     def __init__(self, pos, game, image=None):
         self.x, self.y = pos
         self.game = game 
+        self.mousedown = False
         pygame.mouse.set_visible(False)
         if image != None:
             self.img = image

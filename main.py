@@ -1,5 +1,7 @@
 import pygame
 import sys, random
+
+from pygame.constants import BUTTON_X1
 from settings import *
 from player import *
 from Mobs import *
@@ -84,6 +86,9 @@ class Game:
             if event.type == pygame.QUIT:
                 self.saveMenu.show_save_screen()
                 self.quit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    self.mouse.mousedown = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.saveMenu.show_save_screen()
