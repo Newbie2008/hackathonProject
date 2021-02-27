@@ -35,6 +35,9 @@
   float: left;
 }
 
+.one-of-three {
+  width: 33.33%;
+}
 /* HEADER BEGINS HERE */
 
 #header {
@@ -150,4 +153,8 @@ nav img {
 #about .steps-description {
   font-weight: 300;
   color: black;
+}
+
+#benefits {
+  text-align: center;
 }
