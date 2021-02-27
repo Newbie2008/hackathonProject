@@ -11,6 +11,13 @@ class Wall(pygame.sprite.Sprite):
             self.image = sprite
         else:
             self.image = pygame.Surface((TILESIZE, TILESIZE))
+        
+        self.image.fill(GREEN)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE
 
 
 class Chest(pygame.sprite.Sprite):

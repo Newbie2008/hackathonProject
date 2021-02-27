@@ -3,6 +3,10 @@ import sys, random
 from settings import *
 from player import *
 from Mobs import *
+from tilemap import *
+from tiles import *
+from guis import *
+from os import path
 
 class Game:
     def __init__(self):
