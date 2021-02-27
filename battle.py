@@ -19,6 +19,8 @@ class BattleSystem(pygame.sprite.Sprite):
         self.playerHealthBar.fill(RED)
         self.mobHealthBar = pygame.Surface((TILESIZE, TILESIZE * 2))
         self.mobHealthBar.fill(RED)
+
+        self.attacks = []
         
         self.Battling = False
         self.width = 64
@@ -26,8 +28,7 @@ class BattleSystem(pygame.sprite.Sprite):
 
     def battle(self, mob):
         self.Battling = True
-        for attacks in self.game.player.attacks:
-            Button()
+        self.keyboard = Keyboard(WIDTH + self.width + TILESIZE * 10, HEIGHT - self.height, TILESIZE * 15, TILESIZE, self.game, None)
         while self.Battling:
             self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH * 1.5, TILESIZE))
             self.playerHealthBar.fill(RED)
@@ -36,3 +37,5 @@ class BattleSystem(pygame.sprite.Sprite):
             self.game.update()
             self.game.events()
             self.game.draw()
+            for gui in self.game.gui:
+                gui.update()

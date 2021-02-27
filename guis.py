@@ -57,7 +57,7 @@ class saveMenu:
 class Button(pygame.sprite.Sprite):
 
     def __init__(self, x, y, width, height, text, color, game, font_size, img=None):
-        self.groups = game.all_sprites
+        self.groups = game.gui
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.x = x
@@ -107,19 +107,21 @@ class Mouse():
 
 class Keyboard(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, game, cursor, img=None):
-        self.groups = game.all_sprites
+        self.groups = game.gui
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.width = width
         self.height = height
         self.cursor = cursor
-        self.x = x * TILESIZE
-        self.y = y * TILESIZE
+        self.x = x 
+        self.y = y 
         if img:
             self.img = pygame.image.load(img)
         else:
             self.img = pygame.Surface((self.width,self.height))
             self.img.fill(GREEN)
+        
+        self.rect = self.img.get_rect()
 
     def update(self):
         self.rect.center = self.x, self.y
