@@ -5,6 +5,13 @@
   color: white;
 }
 
+.section-headline {
+  color: #4e4d4d;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 300;
+}
+
 #header {
   background-image: url(../images/background.png);
   height: 100vh;
@@ -77,3 +84,5 @@ nav img {
   background-color: #24e098;
   transition: background-color 1s;
 }
+
+/* ABOUT SECTION */
