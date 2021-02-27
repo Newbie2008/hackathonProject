@@ -57,6 +57,7 @@ class Game:
         self.camera = Camera(self.map.width, self.map.height)
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
         self.saveMenu = saveMenu(self)
+        self.saveMenu.load_save()
     
     def run(self):
         self.playing = True
@@ -109,11 +110,12 @@ class Game:
         
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    print('test')
+                    self.mouse.mousedown = True
+            if event.type == pygame.MOUSEBUTTONUP:
+                self.mouse.mousedown = False
 
 
 g = Game()
 while True:
     g.new()
-    #g.saveMenu.menu()
     g.run()

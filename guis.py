@@ -1,3 +1,4 @@
+from sys import flags
 from settings import *
 import pygame
 
@@ -14,18 +15,22 @@ class saveMenu:
         self.f.write(f"{self.player.rect.y//TILESIZE}\r\n")
         self.f.write(f"{self.player.weapon}\r\n")
 
-    def menu(self, Text, color):
-        self.button =  Button(WIDTH/2, HEIGHT/2, 12, 5, Text, color, self.game, 32)
+    def LoadSaveMenu(self, Text, color):
+        self.Savebutton =  Button(WIDTH/2, HEIGHT/2, 12, 5, Text, color, self.game, 32)
         menu = True
         while menu:
-            self.game.screen.fill(BACKGROUND_COLOR)
-            self.button.update()
-            self.game.mouse.update()
             self.game.events()
+            if self.game.mouse.CollideButton(self.Savebutton):
+                pass
+                #have to add keyboard here
+            self.game.screen.fill(BACKGROUND_COLOR)
+            self.Savebutton.update()
+            self.game.screen.blit(self.game.mouse.img, self.game.mouse.rect)
+            self.game.mouse.update()
             pygame.display.flip()
     
     def load_save(self):
-        self.menu('open save', ORANGE)
+        self.LoadSaveMenu('open save', ORANGE)
         self.save_data = []
         self.filename = input("filename: ")
         if self.filename == "none":
@@ -94,4 +99,9 @@ class Mouse():
     
     def update(self):
         self.rect.center = pygame.mouse.get_pos()
+        
+    def CollideButton(self, button):
+        if self.mousedown is True:
+            if self.rect.colliderect(button.rect):
+                return True
 
