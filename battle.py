@@ -28,7 +28,7 @@ class BattleSystem(pygame.sprite.Sprite):
 
     def battle(self, mob):
         self.Battling = True
-        self.keyboard = Keyboard(WIDTH + self.width + TILESIZE * 10, HEIGHT - self.height, TILESIZE * 15, TILESIZE, self.game, None)
+        self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, None)
         while self.Battling:
             self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH * 1.5, TILESIZE))
             self.playerHealthBar.fill(RED)

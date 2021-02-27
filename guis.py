@@ -113,7 +113,7 @@ class Keyboard(pygame.sprite.Sprite):
         self.width = width
         self.height = height
         self.cursor = cursor
-        self.x = x 
+        self.x = x
         self.y = y 
         if img:
             self.img = pygame.image.load(img)
