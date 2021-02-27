@@ -35,10 +35,14 @@
   float: left;
 }
 
+.one-of-three {
+  width: 33.33%;
+  float: left;
+}
 /* HEADER BEGINS HERE */
 
 #header {
-  background-image: url(../images/background.png);
+  background-image: url(images/background.png);
   height: 100vh;
   background-size: cover;
   position: relative;
@@ -150,4 +154,10 @@ nav img {
 #about .steps-description {
   font-weight: 300;
   color: black;
+}
+
+/* BENEFITS SECTION */
+
+#benefits {
+  text-align: center;
 }
