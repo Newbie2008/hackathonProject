@@ -5,12 +5,37 @@
   color: white;
 }
 
+/* GLOBAL CLASSES */
+
 .section-headline {
   color: #4e4d4d;
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 300;
+  padding-top: 30px;
 }
+
+.line {
+  height: 2px;
+  width: 80px;
+  background-color: lightgray;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.row {
+  width: 80%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.one-of-two {
+  width: 50%;
+  float: left;
+}
+
+/* HEADER BEGINS HERE */
 
 #header {
   background-image: url(../images/background.png);
@@ -44,7 +69,6 @@ nav img {
   width: 200px;
 }
 
-/* HEADER BEGINS HERE */
 #header nav a {
   text-decoration: none;
   color: white;
