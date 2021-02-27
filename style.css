@@ -160,4 +160,16 @@ nav img {
 
 #benefits {
   text-align: center;
+  margin-top: 50px;
+}
+
+#benefits .one-of-three h1 {
+  color: #11939a;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+#benefits .one-of-three h3 {
+  color: black;
+  font-size: 16px;
 }
