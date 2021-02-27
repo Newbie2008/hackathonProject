@@ -32,6 +32,7 @@ class Game:
         self.walls = pygame.sprite.Group()
         self.mobs = pygame.sprite.Group()
         self.Bullets = pygame.sprite.Group()
+        self.gui = pygame.sprite.Group()
         self.chests = pygame.sprite.Group()
         self.saveMenu = saveMenu(self)
         for row, tiles in enumerate(self.map.data):
@@ -90,8 +91,8 @@ class Game:
             self.screen.fill(BACKGROUND_COLOR)
             self.screen.blit(self.battle.playerimg, (0, HEIGHT -TILESIZE * 20))
             self.screen.blit(self.battle.mobimg, (WIDTH -TILESIZE * 20, 0))
-            self.screen.blit(self.battle.playerHealthBar, (0, HEIGHT -TILESIZE * 20 - TILESIZE * 4))
-            self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 20 - TILESIZE *4, 0))
+            self.screen.blit(self.battle.playerHealthBar, (0 + self.battle.width/2, HEIGHT -TILESIZE * 20 - TILESIZE * 4))
+            self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 37, 0 + self.battle.height/2))
             pygame.display.flip()
 
         self.screen.blit(self.mouse.img, self.mouse.rect)
