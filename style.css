@@ -123,6 +123,7 @@ nav img {
   border-radius: 50%;
   position: relative;
   float: left;
+  margin: 10px;
 }
 
 #about .circle p {
