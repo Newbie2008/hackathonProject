@@ -2,7 +2,7 @@ import pygame
 import sys, random
 from settings import *
 from player import *
-from mobs import *
+from Mobs import *
 
 class Game:
     def __init__(self):
@@ -45,10 +45,6 @@ class Game:
                    #self.enemies.append(mob)
                 if tile == "C":
                     self.chest = Chest(self, col, row)
-                if tile == "S":
-                    self.door = door(self, col, row, 0, -2)
-                if tile == "B":
-                    self.door = door(self, col, row, 2, 0)
                 if tile == ".":
                     pass
         self.camera = Camera(self.map.width, self.map.height)
