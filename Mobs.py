@@ -26,6 +26,7 @@ class mob(pygame.sprite.Sprite):
     def plan_move(self, x, y):
         self.kill_radius.center = self.rect.center
         if self.kill_radius.colliderect(self.game.player.rect):
+            self.game.player.battle(self)
             if self.x != x:
                 if x < self.x:
                     self.dx = -1
