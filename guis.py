@@ -21,7 +21,8 @@ class saveMenu:
         while menu:
             self.game.events()
             if self.game.mouse.CollideButton(self.Savebutton):
-                pass
+                self.menu = False
+                self.keyboardInput(Keyboard(self.Savebutton.x, self.Savebutton.y, self.Savebutton.width, self.Savebutton.height, self.game, None))
                 #have to add keyboard here
             self.game.screen.fill(BACKGROUND_COLOR)
             self.Savebutton.update()
@@ -29,6 +30,12 @@ class saveMenu:
             self.game.mouse.update()
             pygame.display.flip()
     
+    def keyboardInput(self, keyboard):
+        keyboardInput = True
+        while keyboardInput:
+            pass
+
+
     def load_save(self):
         self.LoadSaveMenu('open save', ORANGE)
         self.save_data = []
@@ -69,18 +76,11 @@ class Button(pygame.sprite.Sprite):
         self.rect = self.img.get_rect()
 
     def update(self):
-        self.events()
         self.rect.centerx = self.x
         self.rect.centery = self.y
         self.renderedText = self.font.render(self.text,True, (0, 0, 0))
         self.game.screen.blit(self.img, self.rect)
         self.game.screen.blit(self.renderedText, (self.rect.x + self.width/2, self.rect.y + self.font_size))
-
-    def events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    pass
 
 class Mouse():
 
@@ -104,4 +104,22 @@ class Mouse():
         if self.mousedown is True:
             if self.rect.colliderect(button.rect):
                 return True
+
+class Keyboard(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height, game, cursor, img=None):
+        self.groups = game.all_sprites
+        self.game = game
+        self.width = width
+        self.height = height
+        self.cursor = cursor
+        self.x = x * TILESIZE
+        self.y = y * TILESIZE
+        if img:
+            self.img = pygame.image.load(img)
+        else:
+            self.img = pygame.Surface((self.width,self.height))
+            self.img.fill(GREEN)
+
+    def update(self):
+        self.rect.center = self.x, self.y
 
