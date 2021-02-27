@@ -1,10 +1,46 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #header {
-    background-image: url(../images/background.png);
-    height: 100vh;
-    background-size: cover;
+  background-image: url(../images/background.png);
+  height: 100vh;
+  background-size: cover;
+  position: relative;
 }
+
+#header nav {
+  position: fixed;
+  padding: 20px 10px;
+  width: 100%;
+  z-index: 2;
+}
+
+nav ul {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  list-style: none;
+  right: 3%;
+}
+
+nav li {
+  float: left;
+  margin: 0 15px;
+}
+
+nav img {
+  width: 200px;
+}
+
+#header nav a {
+  text-decoration: none;
+  color: white;
+}
+
+#header nav img {
+  width: 100px;
+}
+
