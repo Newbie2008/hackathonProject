@@ -10,18 +10,19 @@ class Particle(pygame.sprite.Sprite):
         self.y = y
         self.timeOnscreen = 100
         if img:
-            self.img = pygame.image.load(img)
+            self.image = pygame.image.load(img)
         else:
-            self.img = pygame.surface((TILESIZE/8, TILESIZE/8))
+            self.image = pygame.Surface((TILESIZE/2, TILESIZE/2))
+            self.image.fill(WHITE)
         
-        self.rect = pygame.img.get_rect()
+        self.rect = self.image.get_rect()
         
     def update(self):
-        self.
-        self.timeOnscreen -= 1
-        if self.timeOnscreen <= 0:
-            self.kill
+        self.rect.center = self.x, self.y
+        #self.timeOnscreen -= 1
+        #if self.timeOnscreen <= 0:
+        #    self.kill
         self.animate()
     
     def animate(self):
-        pass
+        pygame.transform.rotate(self.image, random.randint(0,360))

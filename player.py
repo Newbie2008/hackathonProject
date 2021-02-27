@@ -1,5 +1,7 @@
+import random
 import pygame
 from settings import *
+from particles import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, game, x, y, weapon="none"):
@@ -94,6 +96,8 @@ class Bullet(pygame.sprite.Sprite):
             self.y += self.vely  # * self.game.dt
         self.rect.center = self.x, self.y
         if pygame.sprite.spritecollideany(self, self.game.walls):
+            for x in range(random.randint(1, 8)):
+                Particle(self.game, self.x + random.randint(-5, 5), self.y + random.randint(-5,5))
             self.kill()
         
         
