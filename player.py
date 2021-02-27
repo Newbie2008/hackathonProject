@@ -75,15 +75,6 @@ class Player(pygame.sprite.Sprite):
         if pygame.sprite.spritecollideany(self, self.game.mobs):
             self.health -= 1
     
-    def battle(self, mob):
-        self.Battling = True
-        playerimg = pygame.Surface((TILESIZE * 30, TILESIZE * 30))
-        playerimg.fill(YELLOW)
-        while self.Battling:
-            self.game.update()
-            self.game.events()
-            self.game.draw(playerimg)
-
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, game, x, y, velx, vely):
         self.groups = game.all_sprites, game.Bullets

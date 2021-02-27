@@ -5,6 +5,7 @@ from pygame import mouse
 from settings import *
 from player import *
 from Mobs import *
+from battle import *
 from tilemap import *
 from tiles import *
 from guis import *
@@ -57,6 +58,7 @@ class Game:
         self.camera = Camera(self.map.width, self.map.height)
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
         self.saveMenu = saveMenu(self)
+        self.battle = self.BattleSystem(self)
         #self.saveMenu.load_save()
     
     def run(self):
@@ -78,16 +80,17 @@ class Game:
         sys.exit()
 
 
-    def draw(self, playerimg=None):
+    def draw(self, playerimg=None, mobimg=None):
         self.screen.fill(BACKGROUND_COLOR)
         if not self.player.Battling:
             for sprite in self.all_sprites:
                 self.screen.fill(BACKGROUND_COLOR)
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
         else:
-            if playerimg:
+            if playerimg and mobimg:
                 self.screen.fill(BACKGROUND_COLOR)
-                self.screen.blit(playerimg, (0, HEIGHT -TILESIZE * 30))
+                self.screen.blit(playerimg, (0, HEIGHT -TILESIZE * 20))
+                self.screen.blit(mobimg, (WIDTH -TILESIZE * 20, 0))
             else:
                 pass
 
