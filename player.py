@@ -77,11 +77,12 @@ class Player(pygame.sprite.Sprite):
     
     def battle(self, mob):
         self.Battling = True
+        playerimg = pygame.Surface((TILESIZE * 30, TILESIZE * 30))
+        playerimg.fill(YELLOW)
         while self.Battling:
-            playerimg = pygame.Surface((TILESIZE * 4, TILESIZE * 4))
-            self.game.events()
             self.game.update()
-            self.game.draw()
+            self.game.events()
+            self.game.draw(playerimg)
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, game, x, y, velx, vely):

@@ -78,11 +78,19 @@ class Game:
         sys.exit()
 
 
-    def draw(self):
+    def draw(self, playerimg=None):
         self.screen.fill(BACKGROUND_COLOR)
         if not self.player.Battling:
             for sprite in self.all_sprites:
+                self.screen.fill(BACKGROUND_COLOR)
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
+        else:
+            if playerimg:
+                self.screen.fill(BACKGROUND_COLOR)
+                self.screen.blit(playerimg, (0, HEIGHT -TILESIZE * 30))
+            else:
+                pass
+
         self.screen.blit(self.mouse.img, self.mouse.rect)
         pygame.display.flip()
 
@@ -121,3 +129,4 @@ g = Game()
 while True:
     g.new()
     g.run()
+#easter egg OWO UWU
