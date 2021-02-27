@@ -1,3 +1,4 @@
+from battle import *
 import pygame 
 from settings import *
 import random
@@ -17,6 +18,7 @@ class mob(pygame.sprite.Sprite):
         self.moveDelay = 0
         self.chance = 1
         self.speed = 40
+        self.health = 10
 
     def update(self):
         self.collision_etc()
@@ -26,7 +28,8 @@ class mob(pygame.sprite.Sprite):
     def plan_move(self, x, y):
         self.kill_radius.center = self.rect.center
         if self.kill_radius.colliderect(self.game.player.rect):
-            self.game.player.battle(self)
+            if self.game.battle.Battling != True:
+                self.game.battle.battle(self)
             if self.x != x:
                 if x < self.x:
                     self.dx = -1

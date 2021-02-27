@@ -5,6 +5,7 @@ from pygame import mouse
 from settings import *
 from player import *
 from Mobs import *
+from battle import *
 from tilemap import *
 from tiles import *
 from guis import *
@@ -31,6 +32,7 @@ class Game:
         self.walls = pygame.sprite.Group()
         self.mobs = pygame.sprite.Group()
         self.Bullets = pygame.sprite.Group()
+        self.gui = pygame.sprite.Group()
         self.chests = pygame.sprite.Group()
         self.saveMenu = saveMenu(self)
         for row, tiles in enumerate(self.map.data):
@@ -57,6 +59,7 @@ class Game:
         self.camera = Camera(self.map.width, self.map.height)
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
         self.saveMenu = saveMenu(self)
+        self.battle = BattleSystem(self)
         #self.saveMenu.load_save()
     
     def run(self):
@@ -78,18 +81,20 @@ class Game:
         sys.exit()
 
 
-    def draw(self, playerimg=None):
+    def draw(self):
         self.screen.fill(BACKGROUND_COLOR)
-        if not self.player.Battling:
+        if self.battle.Battling == False:
             for sprite in self.all_sprites:
-                self.screen.fill(BACKGROUND_COLOR)
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
+            pygame.display.flip()
         else:
-            if playerimg:
-                self.screen.fill(BACKGROUND_COLOR)
-                self.screen.blit(playerimg, (0, HEIGHT -TILESIZE * 30))
-            else:
-                pass
+            self.screen.fill(BACKGROUND_COLOR)
+            self.screen.blit(self.battle.playerimg, (0, HEIGHT -TILESIZE * 20))
+            self.screen.blit(self.battle.mobimg, (WIDTH -TILESIZE * 20, 0))
+            self.screen.blit(self.battle.playerHealthBar, (0 + self.battle.width/2, HEIGHT -TILESIZE * 20 - TILESIZE * 4))
+            self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 37, 0 + self.battle.height/2))
+            self.screen.blit(self.battle.keyboard.img, self.battle.keyboard.rect)
+            pygame.display.flip()
 
         self.screen.blit(self.mouse.img, self.mouse.rect)
         pygame.display.flip()
