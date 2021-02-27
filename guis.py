@@ -114,8 +114,12 @@ class Keyboard(pygame.sprite.Sprite):
         self.game = game
         self.width = width
         self.height = height
+        self.text = ''
+        self.font_size = KEYBOARDHEIGHT - 4
+        self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
         self.x = x
         self.y = y 
+        self.screenText = self.font.render(str(self.text), True, (BLACK))
         
         self.cursor = pygame.Surface((CURSORWIDTH, CURSORHEIGHT))
         self.cursor.fill(BLACK)
@@ -135,4 +139,33 @@ class Keyboard(pygame.sprite.Sprite):
     def update(self):
         self.rect.center = self.x, self.y
         self.cursorrect.center = self.cursorx, self.cursory
-
+        self.cursorinput()
+        self.renderText()
+    
+    def cursorinput(self):
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if len(self.text) < 7:
+                    if event.key == pygame.K_0:
+                        self.text = self.text + '0'
+                    if event.key == pygame.K_1:
+                        self.text = self.text + '1'
+                    if event.key == pygame.K_2:
+                        self.text = self.text + '2'
+                    if event.key == pygame.K_3:
+                        self.text = self.text + '3'
+                    if event.key == pygame.K_4:
+                        self.text = self.text + '4'
+                    if event.key == pygame.K_5:
+                        self.text = self.text + '5'
+                    if event.key == pygame.K_6:
+                        self.text = self.text + '6'
+                    if event.key == pygame.K_7:
+                        self.text = self.text + '7'
+                    if event.key == pygame.K_8:
+                        self.text = self.text + '8'
+                    if event.key == pygame.K_9:
+                        self.text = self.text + '9'
+    
+    def renderText(self):
+        self.screenText = self.font.render(str(self.text), True, (BLACK))

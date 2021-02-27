@@ -95,6 +95,7 @@ class Game:
             self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 37, 0 + self.battle.height/2))
             self.screen.blit(self.battle.keyboard.img, self.battle.keyboard.rect)
             self.screen.blit(self.battle.keyboard.cursor, self.battle.keyboard.cursorrect)
+            self.screen.blit(self.battle.keyboard.screenText, self.battle.keyboard.rect)
             pygame.display.flip()
 
         self.screen.blit(self.mouse.img, self.mouse.rect)
