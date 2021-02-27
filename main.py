@@ -80,19 +80,19 @@ class Game:
         sys.exit()
 
 
-    def draw(self, playerimg=None, mobimg=None):
+    def draw(self):
         self.screen.fill(BACKGROUND_COLOR)
         if not self.battle.Battling:
             for sprite in self.all_sprites:
                 self.screen.fill(BACKGROUND_COLOR)
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
         else:
-            if playerimg and mobimg:
-                self.screen.fill(BACKGROUND_COLOR)
-                self.screen.blit(playerimg, (0, HEIGHT -TILESIZE * 20))
-                self.screen.blit(mobimg, (WIDTH -TILESIZE * 20, 0))
-            else:
-                pass
+            self.screen.fill(BACKGROUND_COLOR)
+            self.screen.blit(self.battle.playerimg, (0, HEIGHT -TILESIZE * 20))
+            self.screen.blit(self.battle.mobimg, (WIDTH -TILESIZE * 20, 0))
+            self.screen.blit(self.battle.playerHealthBar, (0, HEIGHT -TILESIZE * 20 - TILESIZE * 4))
+            self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 20 - TILESIZE *4, 0))
+            pygame.display.flip()
 
         self.screen.blit(self.mouse.img, self.mouse.rect)
         pygame.display.flip()
