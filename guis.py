@@ -1,4 +1,6 @@
 from sys import flags
+
+from pygame import rect
 from settings import *
 import pygame
 
@@ -106,15 +108,19 @@ class Mouse():
                 return True
 
 class Keyboard(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height, game, cursor, img=None):
+    def __init__(self, x, y, width, height, game, img=None):
         self.groups = game.gui
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.width = width
         self.height = height
-        self.cursor = cursor
         self.x = x
         self.y = y 
+        
+        self.cursor = pygame.Surface((CURSORWIDTH, CURSORHEIGHT))
+        self.cursor.fill(BLACK)
+        self.cursorrect = self.cursor.get_rect()
+        
         if img:
             self.img = pygame.image.load(img)
         else:
@@ -123,6 +129,10 @@ class Keyboard(pygame.sprite.Sprite):
         
         self.rect = self.img.get_rect()
 
+        self.cursorx = self.x - self.width/2 + CURSORWIDTH
+        self.cursory = self.y
+
     def update(self):
         self.rect.center = self.x, self.y
+        self.cursorrect.center = self.cursorx, self.cursory
 
