@@ -1,5 +1,6 @@
 from settings import *
 import pygame
+from guis import *
 
 class BattleSystem(pygame.sprite.Sprite):
 
@@ -25,6 +26,8 @@ class BattleSystem(pygame.sprite.Sprite):
 
     def battle(self, mob):
         self.Battling = True
+        for attacks in self.game.player.attacks:
+            Button()
         while self.Battling:
             self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH * 1.5, TILESIZE))
             self.playerHealthBar.fill(RED)

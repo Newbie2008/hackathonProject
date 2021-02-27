@@ -14,12 +14,13 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.health = PLAYER_HEALTH
+        self.attacks = ['attack1', 'attack2', 'attack3', 'attack4']
 
         self.up = False
         self.down = False
         self.left = False
         self.right = False
-        self.weapon = weapon
+        self.weapon = 'bullet'
         self.moveDelay = 0
         self.Battling = False
 

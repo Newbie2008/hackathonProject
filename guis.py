@@ -108,6 +108,7 @@ class Mouse():
 class Keyboard(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, game, cursor, img=None):
         self.groups = game.all_sprites
+        pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.width = width
         self.height = height
