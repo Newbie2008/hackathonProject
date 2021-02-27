@@ -119,7 +119,7 @@ class Keyboard(pygame.sprite.Sprite):
             self.img = pygame.image.load(img)
         else:
             self.img = pygame.Surface((self.width,self.height))
-            self.img.fill(GREEN)
+            self.img.fill(LIGHTGREY)
         
         self.rect = self.img.get_rect()
 
