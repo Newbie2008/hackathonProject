@@ -1,4 +1,8 @@
+from os import walk
 import random
+
+from pygame import sprite
+from tiles import Wall
 from sprites import Spritesheet
 import pygame
 from settings import *
@@ -6,7 +10,7 @@ from particles import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, game, x, y, weapon="none"):
-        self.groups = game.player
+        self.groups = game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pygame.Surface((TILESIZE, TILESIZE))
@@ -24,15 +28,47 @@ class Player(pygame.sprite.Sprite):
         self.down = False
         self.left = False
         self.right = False
+        self.standing = True
         self.weapon = 'bullet'
         self.moveDelay = 0
         self.Battling = False
+        self.walkCount = 0
+        self.spriteChangeDelay = 0
 
     def update(self):
         self.collide_etc()
         self.get_keys()
+        self.draw()
         self.rect.x, self.rect.y = self.x * TILESIZE, self.y * TILESIZE
         #self.walkDown.draw(self.game.screen,  index %s, self.walkDown.totalCells, )
+    
+    def draw(self):
+        if self.walkCount + 1 >= 4:
+            self.walkCount = 0
+        if not(self.standing):
+            if self.left:
+                self.image = self.walkLeft[self.walkCount]
+                self.spriteChangeDelay += 1 
+            if self.right:
+                self.image = self.walkRight[self.walkCount]
+                self.spriteChangeDelay += 1 
+            if self.up:
+                self.image = self.walkUp[self.walkCount]
+                self.spriteChangeDelay += 1 
+            if self.down:
+                self.image = self.walkDown[self.walkCount]
+                self.spriteChangeDelay += 1
+            
+        else:
+            if self.left:
+                self.image = self.walkLeft[0]
+            if self.right:
+                self.image = self.walkRight[0]
+            if self.up:
+                self.image = self.walkUp[0]
+            if self.down:
+                self.image = self.walkDown[0]
+
 
     def move(self, dx, dy):
         self.moveDelay += 1
@@ -67,6 +103,9 @@ class Player(pygame.sprite.Sprite):
             self.down = False
             self.left = False
             self.right = True
+        else:
+            self.standing = True
+            self.walkCount = 0
 
     def collide_with_walls(self, dx=0, dy=0):
         for wall in self.game.walls:

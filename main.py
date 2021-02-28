@@ -30,7 +30,6 @@ class Game:
 
     def new(self):
         self.all_sprites = pygame.sprite.Group()
-        self.player = pygame.sprite.Group()
         self.walls = pygame.sprite.Group()
         self.mobs = pygame.sprite.Group()
         self.Bullets = pygame.sprite.Group()
@@ -91,7 +90,6 @@ class Game:
         if self.battle.Battling == False:
             for sprite in self.all_sprites:
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
-            self.screen.blit()
             #for mob in self.mobs:
             #    self.screen.blit(mob.healthbar, mob.healthbarrect)
             pygame.display.flip()
