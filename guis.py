@@ -12,7 +12,6 @@ class saveMenu:
         self.savemenu = False
         self.menu = False
         self.text = ''
-        self.save = ''
     
     def show_save_screen(self):
         self.yesButton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'Save', LIGHTGREY, self.game, 64, self.game.gui)
@@ -23,15 +22,17 @@ class saveMenu:
             self.game.draw()
             self.game.events()
             if self.game.mouse.CollideButton(self.yesButton):
-                self.save = True
+                self.save()
             if self.game.mouse.CollideButton(self.noButton):
                 self.game.quit()
-            self.f = open(f"{self.filename}", "w+")
-            self.f.write(f"{self.player.rect.x//TILESIZE}\r\n")
-            self.f.write(f"{self.player.rect.y//TILESIZE}\r\n")
-            self.f.write(f"{self.player.weapon}\r\n")
-            self.savemenu = False
-            self.game.quit()
+
+    def save(self):
+        self.f = open("{}".format(self.filename), "w+")
+        self.f.write("{}\r\n".format(self.game.player.rect.x//TILESIZE))
+        self.f.write("{}\r\n".format(self.game.player.rect.y//TILESIZE))
+        self.f.write("{}\r\n".format(self.game.player.weapon))
+        self.savemenu = False
+        self.game.quit()
 
     def LoadSaveMenu(self):
         self.Savebutton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, '', LIGHTGREY, self.game, 64, self.game.gui)
