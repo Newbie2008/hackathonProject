@@ -155,12 +155,12 @@ class Game:
             if event.type == pygame.QUIT:
                 if self.playing:
                     self.saveMenu.show_save_screen()
-                    self.quit()
+                self.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if self.playing:
                         self.saveMenu.show_save_screen()
-                        self.quit()
+                    self.quit()
             
                 if event.key == pygame.K_SPACE and self.player.weapon != "none":
                     self.bulletsound.play()

@@ -21,7 +21,7 @@ class Wall(pygame.sprite.Sprite):
 
 class Chest(pygame.sprite.Sprite):
     def __init__(self, game, x, y, sprite='none'):
-        self.groups = game.all_sprites, game.chests
+        self.groups = game.all_sprites, game.chests, game.walls
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         if sprite == 'none':
@@ -40,10 +40,9 @@ class Chest(pygame.sprite.Sprite):
         self.check_if_opened()
 
     def check_if_opened(self):
-        if self.opened == False:
-            if self.game.player.rect.colliderect(self.rect):
-                self.opened = True
-                self.game.player.weapon = 'bullet'
+        if self.opened == True:
+            self.game.player.weapon = 'bullet'
+            self.kill
 
 class LevelEnd(pygame.sprite.Sprite):
 
