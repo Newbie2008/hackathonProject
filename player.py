@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.health = PLAYER_HEALTH
-        self.walkDown = Spritesheet('assets/RoBoBo-WalkDown')
+        self.walkDown = Spritesheet('assets/RoBoBo-WalkDown.png', 12, self.game, 1)
 
         self.up = False
         self.down = False
@@ -29,6 +29,7 @@ class Player(pygame.sprite.Sprite):
         self.collide_etc()
         self.get_keys()
         self.rect.x, self.rect.y = self.x * TILESIZE, self.y * TILESIZE
+        #self.walkDown.draw(self.game.screen,  index %s, self.walkDown.totalCells, )
 
     def move(self, dx, dy):
         self.moveDelay += 1

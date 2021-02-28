@@ -20,4 +20,6 @@ class Spritesheet:
         self.handle = list()
     
     def draw(self, surface, cellIndex, x, y, handle=0):
+        self.game.screen.fill(LIGHTGREY)
         self.game.screen.blit(self.sheet(x + self.handle[handle][0], y + self.handle[handle][1], self.cells[cellIndex]))
+        self.game.displayUpdate()
