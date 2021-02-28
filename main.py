@@ -23,6 +23,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.enemies = []
         self.bullets = []
+        self.playing = False
         self.maps= ['mapexample.txt','maps/area-1-map.txt', 'maps/area-2-map.txt', 'maps/area-3-map.txt', 'maps/area-4-map.txt', 'maps/area-5-map.txt', 'maps/area-6-map.txt', ]
         self.gui = pygame.sprite.Group()
         self.mouse = Mouse(pygame.mouse.get_pos(), self, pygame.image.load('assets/cursor.png'))
@@ -137,6 +138,7 @@ class Game:
                     self.screen.blit(gui.image, gui.rect)
                     self.screen.blit(gui.renderedText, gui.rect)
                 #self.screen.blit(self.saveMenu.Savebutton.renderedText, (self.saveMenu.Savebutton.rect.x + self.saveMenu.Savebutton.width/10, self.saveMenu.Savebutton.rect.y))
+                self.screen.blit(self.saveMenu.keyboard.cursor, self.saveMenu.keyboard.cursorrect)
                 self.screen.blit(self.mouse.image, self.mouse.rect)
                 pygame.display.flip()
 
@@ -152,12 +154,14 @@ class Game:
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.saveMenu.show_save_screen()
-                self.quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
+                if self.playing:
                     self.saveMenu.show_save_screen()
                     self.quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    if self.playing:
+                        self.saveMenu.show_save_screen()
+                        self.quit()
             
                 if event.key == pygame.K_SPACE and self.player.weapon != "none":
                     self.bulletsound.play()
