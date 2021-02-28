@@ -21,15 +21,17 @@ class BattleSystem(pygame.sprite.Sprite):
         self.mobHealthBar.fill(RED)
 
         self.attacks = []
+        self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, None)
         
         self.Battling = False
         self.width = 64
         self.height = 64
         self.text = 0
 
+
     def battle(self, mob):
         self.Battling = True
-        self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, None)
+        self.keyboard.cursorx = self.keyboard.x - self.keyboard.width/2 + CURSORWIDTH
         while self.Battling:
             self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH * 1.5, TILESIZE))
             self.playerHealthBar.fill(RED)
@@ -38,9 +40,16 @@ class BattleSystem(pygame.sprite.Sprite):
             self.game.update()
             self.game.events()
             self.game.draw()
+            self.check(mob)
             for gui in self.game.gui:
                 gui.update()
+    
+    def check(self, mob):
+        if len(self.keyboard.text) > 0:
+            self.text = int(self.keyboard.text)
             if self.text == 1:
                 self.Battling = False 
-                self.keyboard.text = '0'
+                self.keyboard.text = ''
+                self.keyboard.screenText = ''
+                self.text = 0
                 mob.kill()

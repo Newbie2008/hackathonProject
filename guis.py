@@ -148,27 +148,34 @@ class Keyboard(pygame.sprite.Sprite):
                 if len(self.text) < 7:
                     if event.key == pygame.K_0:
                         self.text = self.text + '0'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_1:
                         self.text = self.text + '1'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_2:
                         self.text = self.text + '2'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_3:
                         self.text = self.text + '3'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_4:
                         self.text = self.text + '4'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_5:
                         self.text = self.text + '5'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_6:
                         self.text = self.text + '6'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_7:
                         self.text = self.text + '7'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_8:
                         self.text = self.text + '8'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_9:
                         self.text = self.text + '9'
-                    
-                    self.cursorx += self.font_size - TILESIZE * 2
-                    self.game.battle.text = int(self.text)
+                        self.cursorx += self.font_size - TILESIZE * 2
     
     def renderText(self):
         self.screenText = self.font.render(str(self.text), True, (BLACK))
