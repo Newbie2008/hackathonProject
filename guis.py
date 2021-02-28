@@ -9,30 +9,54 @@ class saveMenu:
     def __init__(self, game):
         self.game = game
         self.loadSaveData = False
+        self.savemenu = False
         self.menu = False
+        self.text = ''
     
     def show_save_screen(self):
-        self.filename = input("filename: ")
-        self.f = open(f"{self.filename}", "w+")
-        self.f.write(f"{self.player.rect.x//TILESIZE}\r\n")
-        self.f.write(f"{self.player.rect.y//TILESIZE}\r\n")
-        self.f.write(f"{self.player.weapon}\r\n")
+        self.yesButton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'Save', LIGHTGREY, self.game, 64, self.game.gui)
+        self.noButton =  Button(self.Savebutton.x, self.Savebutton.y + self.Savebutton.height + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, "do not save", LIGHTGREY, self.game, 64, self.game.gui)
+        self.savemenu = True
+        while self.savemenu:
+            self.game.update()
+            self.game.draw()
+            self.game.events()
+            if self.game.mouse.CollideButton(self.yesButton):
+                self.save = True
+            if self.game.mouse.CollideButton(self.noButton):
+                self.save = False
+        if self.save = True:
+            self.f = open(f"{self.filename}", "w+")
+            self.f.write(f"{self.player.rect.x//TILESIZE}\r\n")
+            self.f.write(f"{self.player.rect.y//TILESIZE}\r\n")
+            self.f.write(f"{self.player.weapon}\r\n")
+        else:
+            self.game.quit()
 
-    def LoadSaveMenu(self, Text, color):
-        self.Savebutton =  Button(WIDTH/2, HEIGHT/2, 12, 5, Text, color, self.game, 32)
+    def LoadSaveMenu(self):
+        self.Savebutton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, '', LIGHTGREY, self.game, 64, self.game.gui)
+        self.NewSavebutton =  Button(self.Savebutton.x, self.Savebutton.y + self.Savebutton.height + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'new save', LIGHTGREY, self.game, 64, self.game.gui)
+        self.keyboard  = Keyboard(self.Savebutton.x, self.NewSavebutton.y + KEYBOARDHEIGHT + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, self.game.gui)
         self.menu = True
         while self.menu:
             self.game.update()
             self.game.draw()
             self.game.events() 
             if self.game.mouse.CollideButton(self.Savebutton):
+                self.Savebutton.kill()
+                self.NewSavebutton.kill()
+                self.keyboard.kill()
                 self.menu = False
-                self.keyboardInput(Keyboard(self.Savebutton.x, self.Savebutton.y, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, None))
+            if self.game.mouse.CollideButton(self.NewSavebutton):
+                self.filename = 'none'
+                self.Savebutton.kill()
+                self.NewSavebutton.kill()
+                self.keyboard.kill()
+                self.menu = False
     
     def load_save(self):
-        self.LoadSaveMenu('open save', ORANGE)
+        self.LoadSaveMenu()
         self.save_data = []
-        self.filename = input("filename: ")
         if self.filename == "none":
             self.loadSaveData = False
         if self.filename != "none":
@@ -50,8 +74,8 @@ class saveMenu:
 
 class Button(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, width, height, text, color, game, font_size, img=None):
-        self.groups = game.gui
+    def __init__(self, x, y, width, height, text, color, game, font_size, groups, img=None):
+        self.groups = groups
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.x = x
@@ -63,15 +87,14 @@ class Button(pygame.sprite.Sprite):
         self.height = height
         self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
         if img == None:
-            self.img = pygame.Surface((width, height))
-            self.img.fill(color)
+            self.image = pygame.Surface((width, height))
+            self.image.fill(color)
         else:
-            self.img = pygame.image.load(img)
-        self.rect = self.img.get_rect()
+            self.image = pygame.image.load(img)
+        self.rect = self.image.get_rect()
 
     def update(self):
-        self.rect.centerx = self.x
-        self.rect.centery = self.y
+        self.rect.center = self.x, self.y
         self.renderedText = self.font.render(self.text,True, (0, 0, 0))
         #self.game.screen.blit(self.img, self.rect)
         #self.game.screen.blit(self.renderedText, (self.rect.x + self.width/2, self.rect.y + self.font_size))
@@ -85,12 +108,12 @@ class Mouse():
         self.mousedown = False
         pygame.mouse.set_visible(False)
         if image != None:
-            self.img = image
+            self.image = image
         else:
-            self.img = pygame.Surface((TILESIZE/4, TILESIZE/4))
-            self.img.fill(WHITE)
+            self.image = pygame.Surface((TILESIZE/4, TILESIZE/4))
+            self.image.fill(WHITE)
         
-        self.rect = self.img.get_rect()
+        self.rect = self.image.get_rect()
     
     def update(self):
         self.rect.center = pygame.mouse.get_pos()
@@ -101,30 +124,30 @@ class Mouse():
                 return True
 
 class Keyboard(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height, game, img=None):
-        self.groups = game.gui
+    def __init__(self, x, y, width, height, game, groups, img=None):
+        self.groups = groups
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.width = width
         self.height = height
-        self.text = ''
+        self.text = '1'
         self.font_size = KEYBOARDHEIGHT - 4
         self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
         self.x = x
         self.y = y 
-        self.screenText = self.font.render(str(self.text), True, (BLACK))
+        self.renderedText = self.font.render(str(self.text), True, (BLACK))
         
         self.cursor = pygame.Surface((CURSORWIDTH, CURSORHEIGHT))
         self.cursor.fill(BLACK)
         self.cursorrect = self.cursor.get_rect()
         
         if img:
-            self.img = pygame.image.load(img)
+            self.image = pygame.image.load(img)
         else:
-            self.img = pygame.Surface((self.width,self.height))
-            self.img.fill(LIGHTGREY)
+            self.image = pygame.Surface((self.width,self.height))
+            self.image.fill(LIGHTGREY)
         
-        self.rect = self.img.get_rect()
+        self.rect = self.image.get_rect()
 
         self.cursorx = self.x - self.width/2 + CURSORWIDTH
         self.cursory = self.y
@@ -177,15 +200,15 @@ class Keyboard(pygame.sprite.Sprite):
                     if event.key == pygame.K_MINUS:
                         self.text = self.text + '-'
                         self.cursorx += self.font_size - TILESIZE * 2
-                    if event.key == pygame.K_RETURN:
-                        self.game.battle.check(mob)
-                        self.text = ''
-                        self.screenText = ''
-                        self.cursorx = self.x - self.width/2 + CURSORWIDTH
-                    if event.key == pygame.K_BACKSPACE:
-                        if len(self.text) > 0:
-                            self.text = self.text[:-1]
-                            self.cursorx += TILESIZE * 2 - self.font_size
+                if event.key == pygame.K_RETURN:
+                    self.game.battle.check(mob)
+                    self.text = ''
+                    self.screenText = ''
+                    self.cursorx = self.x - self.width/2 + CURSORWIDTH
+                if event.key == pygame.K_BACKSPACE:
+                    if len(self.text) > 0:
+                        self.text = self.text[:-1]
+                        self.cursorx += TILESIZE * 2 - self.font_size
     
     def renderText(self):
-        self.screenText = self.font.render(str(self.text), True, (BLACK))
+        self.renderedText = self.font.render(str(self.text), True, (BLACK))

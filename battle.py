@@ -3,12 +3,10 @@ import pygame
 from guis import *
 import random
 
-class BattleSystem(pygame.sprite.Sprite):
+class BattleSystem:
 
     def __init__(self, game):
-        self.groups = game.gui
         self.game = game
-        pygame.sprite.Sprite.__init__(self, self.groups)
 
         self.playerimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
         self.playerimg.fill(YELLOW)
@@ -22,8 +20,8 @@ class BattleSystem(pygame.sprite.Sprite):
         self.mobHealthBar.fill(RED)
 
         self.attacks = []
-        self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, None)
-        self.questionBoard = Button(self.keyboard.x, self.keyboard.y - KEYBOARDHEIGHT - TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, '', LIGHTGREY, self.game, self.keyboard.font_size)
+        self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, self.game.battles, None)
+        self.questionBoard = Button(self.keyboard.x, self.keyboard.y - KEYBOARDHEIGHT - TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, '', LIGHTGREY, self.game, self.keyboard.font_size, self.game.battles)
         
         self.Battling = False
         self.width = 64
@@ -39,8 +37,8 @@ class BattleSystem(pygame.sprite.Sprite):
             self.mobHealthBar = pygame.Surface((TILESIZE * mob.health * 1.5, TILESIZE))
             self.mobHealthBar.fill(RED)
             self.game.update()
-            for gui in self.game.gui:
-                gui.update()
+            for sprite in self.game.battles:
+                sprite.update()
             self.game.events()
             self.game.draw()
             self.questionBoard.text = self.equation
