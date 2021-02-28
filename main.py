@@ -38,7 +38,7 @@ class Game:
         for row, tiles in enumerate(self.map.data):
             for col, tile in enumerate(tiles):
                 if tile == "1":
-                    Wall(self, col, row, 'assets/FloorTile.png')
+                    Wall(self, col, row, 'assets/WallTile.png')
                 if tile == "P":
                     if self.saveMenu.loadSaveData == True:
                         self.player = Player(

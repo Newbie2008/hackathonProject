@@ -4,17 +4,18 @@ import random
 
 class Particle(pygame.sprite.Sprite):
 
-    def __init__(self, game, x, y, img=None):
+    def __init__(self, game, x, y, color=[WHITE], img=None):
         self.groups = game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.x = x
         self.y = y
+        self.color = color
         self.timeOnscreen = random.randint(0, PARTICLETIME)
         if img:
             self.image = pygame.image.load(img)
         else:
             self.image = pygame.Surface((TILESIZE/4, TILESIZE/4))
-            self.image.fill(WHITE)
+            self.image.fill(self.color[random.randint(0,len(self.color)-1)])
         
         self.rect = self.image.get_rect()
         

@@ -189,9 +189,10 @@ class Keyboard(pygame.sprite.Sprite):
                         self.text = ''
                         self.screenText = ''
                         self.cursorx = self.x - self.width/2 + CURSORWIDTH
-                    if event.key == pygame.k_BACKSPACE:
-                        self.text = self.text[:-1]
-                        self.cursorx -= self.font_size + TILESIZE * 2
+                    if event.key == pygame.K_BACKSPACE:
+                        if len(self.text) < 0:
+                            self.text = self.text[:-1]
+                            self.cursorx -= self.font_size 
     
     def renderText(self):
         self.screenText = self.font.render(str(self.text), True, (BLACK))

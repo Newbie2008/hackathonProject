@@ -53,6 +53,9 @@ class BattleSystem(pygame.sprite.Sprite):
                 self.keyboard.screenText = ''
                 self.text = 0
                 mob.health -= 1
+                if mob.health == 0:
+                    self.Battling = False
+                    mob.kill()
                 self.generateProblem()
             else:
                 self.game.player.health -= 1
