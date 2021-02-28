@@ -38,6 +38,7 @@ class BattleSystem:
         self.generateProblem()
         self.keyboard.cursorx = self.keyboard.x - self.keyboard.width/2 + CURSORWIDTH
         while self.Battling:
+            self.game.events()
             self.playerHealthBar = pygame.Surface((TILESIZE * self.game.player.health * 1.5, TILESIZE))
             self.playerHealthBar.fill(RED)
             self.mobHealthBar = pygame.Surface((TILESIZE * mob.health * 1.5, TILESIZE))
@@ -45,7 +46,6 @@ class BattleSystem:
             self.game.update()
             for sprite in self.game.battles:
                 sprite.update()
-            self.game.events()
             self.game.draw()
             self.questionBoard.text = self.equation
             self.keyboard.cursorinput(mob)
