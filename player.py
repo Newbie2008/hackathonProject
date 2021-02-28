@@ -24,6 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.walkLeft = [pygame.image.load('assets/WalkLeft1.png').convert_alpha(),pygame.image.load('assets/WalkLeft2.png').convert_alpha(),pygame.image.load('assets/WalkLeft3.png').convert_alpha(),pygame.image.load('assets/WalkLeft4.png').convert_alpha(),]
         self.walkRight =[pygame.image.load('assets/WalkRight1.png').convert_alpha(),pygame.image.load('assets/WalkRight2.png').convert_alpha(),pygame.image.load('assets/WalkRight3.png').convert_alpha(),pygame.image.load('assets/WalkRight4.png').convert_alpha(),]
 
+        self.image = self.walkDown[0]
         self.up = False
         self.down = False
         self.left = False
@@ -127,7 +128,7 @@ class Bullet(pygame.sprite.Sprite):
         self.groups = game.all_sprites, game.Bullets
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
-        self.image = pygame.Surface((TILESIZE / 2, TILESIZE / 2))
+        self.image = pygame.Surface((TILESIZE / 4, TILESIZE / 4))
         self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
         self.x = x

@@ -22,11 +22,13 @@ class Game:
         self.clock = pygame.time.Clock()
         self.enemies = []
         self.bullets = []
-        self.load_data()
+        self.maps= ['maps/area-1-map.txt', 'maps/area-2-map.txt', 'maps/area-3-map.txt', 'maps/area-4-map.txt', 'maps/area-5-map.txt', 'maps/area-6-map.txt', ]
+        self.levelNumber = 1
+        self.load_data(self.maps[self.levelNumber-1])
 
-    def load_data(self):
+    def load_data(self, filename):
         game_folder = path.dirname(__file__)
-        self.map = Map(path.join(game_folder, "mapexample.txt"))
+        self.map = Map(path.join(game_folder, filename))
 
     def new(self):
         self.all_sprites = pygame.sprite.Group()
