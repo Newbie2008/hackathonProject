@@ -10,6 +10,7 @@ from tilemap import *
 from tiles import *
 from guis import *
 from particles import *
+from sprites import *
 from os import path
 
 class Game:

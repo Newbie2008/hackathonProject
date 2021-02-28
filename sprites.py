@@ -3,8 +3,9 @@ from settings import *
 
 class Spritesheet:
 
-    def __init__(self, filename, columns, rows):
+    def __init__(self, filename, columns, game, rows):
         self.sheet = pygame.image.load(filename)
+        self.game = game
         
         self.columns = columns
         self.rows = rows
@@ -19,4 +20,4 @@ class Spritesheet:
         self.handle = list()
     
     def draw(self, surface, cellIndex, x, y, handle=0):
-        pass
+        self.game.screen.blit(self.sheet(x + self.handle[handle][0], y + self.handle[handle][1], self.cells[cellIndex]))

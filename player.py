@@ -1,4 +1,5 @@
 import random
+from sprites import Spritesheet
 import pygame
 from settings import *
 from particles import *
@@ -14,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.health = PLAYER_HEALTH
+        self.walkDown = Spritesheet('assets/RoBoBo-WalkDown')
 
         self.up = False
         self.down = False
