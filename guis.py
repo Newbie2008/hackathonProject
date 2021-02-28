@@ -139,10 +139,9 @@ class Keyboard(pygame.sprite.Sprite):
     def update(self):
         self.rect.center = self.x, self.y
         self.cursorrect.center = self.cursorx, self.cursory
-        self.cursorinput()
         self.renderText()
     
-    def cursorinput(self):
+    def cursorinput(self, mob):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if len(self.text) < 7:
@@ -179,6 +178,14 @@ class Keyboard(pygame.sprite.Sprite):
                     if event.key == pygame.K_9:
                         self.text = self.text + '9'
                         self.cursorx += self.font_size - TILESIZE * 2
+                    if event.key == pygame.K_PERIOD:
+                        self.text = self.text + '.'
+                        self.cursorx += self.font_size - TILESIZE * 2
+                    if event.key == pygame.K_RETURN:
+                        self.game.battle.check(mob)
+                        self.text = ''
+                        self.screenText = ''
+                        self.cursorx = self.x - self.width/2 + CURSORWIDTH
     
     def renderText(self):
         self.screenText = self.font.render(str(self.text), True, (BLACK))

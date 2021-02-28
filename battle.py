@@ -43,7 +43,8 @@ class BattleSystem(pygame.sprite.Sprite):
             self.game.update()
             self.game.events()
             self.game.draw()
-            self.check(mob)
+            self.keyboard.cursorinput(mob)
+            #self.check(mob)
             for gui in self.game.gui:
                 gui.update()
     
@@ -56,13 +57,16 @@ class BattleSystem(pygame.sprite.Sprite):
                 self.keyboard.screenText = ''
                 self.text = 0
                 mob.kill()
+            
+            else:
+                self.game.player.health -= 1
 
     def generateProblem(self):
         self.operatorList = ['+', '-', '*', '/']
         self.operatorGen = random.randint(0, 3)
         self.operator = self.operatorList[self.operatorGen]
         self.num1 = random.randint(0, 10)
-        self.num2 = random.randint(0, 10)
+        self.num2 = random.randint(1, 10)
         self.equation = f'{self.num1}  {self.operator}  {self.num2}'
         print(self.equation)
         self.answer = 0
@@ -77,3 +81,4 @@ class BattleSystem(pygame.sprite.Sprite):
 
         if self.operator == '/': 
             self.answer = self.num1 / self.num2
+            self.answer = round(self.answer, 2)
