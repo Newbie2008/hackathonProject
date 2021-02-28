@@ -71,7 +71,7 @@ class Button(pygame.sprite.Sprite):
         self.height = height
         self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
         if img == None:
-            self.img = pygame.Surface((width * TILESIZE, height * TILESIZE))
+            self.img = pygame.Surface((width, height))
             self.img.fill(color)
         else:
             self.img = pygame.image.load(img)
@@ -81,8 +81,9 @@ class Button(pygame.sprite.Sprite):
         self.rect.centerx = self.x
         self.rect.centery = self.y
         self.renderedText = self.font.render(self.text,True, (0, 0, 0))
-        self.game.screen.blit(self.img, self.rect)
-        self.game.screen.blit(self.renderedText, (self.rect.x + self.width/2, self.rect.y + self.font_size))
+        #self.game.screen.blit(self.img, self.rect)
+        #self.game.screen.blit(self.renderedText, (self.rect.x + self.width/2, self.rect.y + self.font_size))
+        #self.game.displayUpdate()
 
 class Mouse():
 

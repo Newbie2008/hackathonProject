@@ -26,7 +26,7 @@ class Game:
 
     def load_data(self):
         game_folder = path.dirname(__file__)
-        self.map = Map(path.join(game_folder, "maps/area-4-map.txt"))
+        self.map = Map(path.join(game_folder, "mapexample.txt"))
 
     def new(self):
         self.all_sprites = pygame.sprite.Group()
@@ -81,7 +81,7 @@ class Game:
         pygame.quit()
         sys.exit()
     
-    def displayUpdate():
+    def displayUpdate(self):
         pygame.display.update()
 
 
@@ -102,6 +102,8 @@ class Game:
             self.screen.blit(self.battle.keyboard.img, self.battle.keyboard.rect)
             self.screen.blit(self.battle.keyboard.cursor, self.battle.keyboard.cursorrect)
             self.screen.blit(self.battle.keyboard.screenText, self.battle.keyboard.rect)
+            self.screen.blit(self.battle.questionBoard.img, self.battle.questionBoard.rect)
+            self.screen.blit(self.battle.questionBoard.renderedText, self.battle.questionBoard.rect)
             pygame.display.flip()
 
         self.screen.blit(self.mouse.img, self.mouse.rect)

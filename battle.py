@@ -23,6 +23,7 @@ class BattleSystem(pygame.sprite.Sprite):
 
         self.attacks = []
         self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, None)
+        self.questionBoard = Button(self.keyboard.x, self.keyboard.y - KEYBOARDHEIGHT - TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, '', LIGHTGREY, self.game, self.keyboard.font_size)
         
         self.Battling = False
         self.width = 64
@@ -38,12 +39,13 @@ class BattleSystem(pygame.sprite.Sprite):
             self.mobHealthBar = pygame.Surface((TILESIZE * mob.health * 1.5, TILESIZE))
             self.mobHealthBar.fill(RED)
             self.game.update()
-            self.game.events()
-            self.game.draw()
-            self.keyboard.cursorinput(mob)
-            #self.check(mob)
             for gui in self.game.gui:
                 gui.update()
+            self.game.events()
+            self.game.draw()
+            self.questionBoard.text = self.equation
+            self.keyboard.cursorinput(mob)
+            #self.check(mob)
     
     def check(self, mob):
         if len(self.keyboard.text) > 0:
@@ -67,7 +69,7 @@ class BattleSystem(pygame.sprite.Sprite):
         self.operator = self.operatorList[self.operatorGen]
         self.num1 = random.randint(0, 10)
         self.num2 = random.randint(1, 10)
-        self.equation = f'{self.num1}  {self.operator}  {self.num2}'
+        self.equation = f' {self.num1} {self.operator} {self.num2}'
         print(self.equation)
         self.answer = 0
         if self.operator == '+': 
