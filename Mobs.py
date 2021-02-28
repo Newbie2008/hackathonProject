@@ -12,12 +12,14 @@ class mob(pygame.sprite.Sprite):
         self.image = pygame.Surface((TILESIZE, TILESIZE))
         self.image.fill(RED)
         self.rect = self.image.get_rect()
-        self.kill_radius = pygame.Rect(x * TILESIZE, y * TILESIZE, TILESIZE * 20, TILESIZE * 20)
+        self.kill_radius = pygame.Rect(x * TILESIZE, y * TILESIZE, TILESIZE * 5, TILESIZE * 5)
+        self.follow_radius = pygame.Rect(x * TILESIZE, y * TILESIZE, TILESIZE * 20, TILESIZE * 20)
         self.x = x
         self.y = y
         self.moveDelay = 0
         self.chance = 1
         self.speed = 40
+        self.healthpts = 3
         self.health = 10
 
     def update(self):
@@ -27,9 +29,12 @@ class mob(pygame.sprite.Sprite):
 
     def plan_move(self, x, y):
         self.kill_radius.center = self.rect.center
+        self.follow_radius.center = self.rect.center
         if self.kill_radius.colliderect(self.game.player.rect):
             if self.game.battle.Battling != True:
                 self.game.battle.battle(self)
+        
+        if self.follow_radius.colliderect(self.game.player.rect):
             if self.x != x:
                 if x < self.x:
                     self.dx = -1
@@ -65,5 +70,7 @@ class mob(pygame.sprite.Sprite):
     
     def collision_etc(self):
         if pygame.sprite.spritecollideany(self, self.game.Bullets):
-            self.kill()
-            return True
+            self.healthpts -= 1
+            if self.healthpts <= 0:
+                self.kill()
+                return True
