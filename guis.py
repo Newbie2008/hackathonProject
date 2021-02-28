@@ -9,6 +9,7 @@ class saveMenu:
     def __init__(self, game):
         self.game = game
         self.loadSaveData = False
+        self.menu = False
     
     def show_save_screen(self):
         self.filename = input("filename: ")
@@ -19,24 +20,15 @@ class saveMenu:
 
     def LoadSaveMenu(self, Text, color):
         self.Savebutton =  Button(WIDTH/2, HEIGHT/2, 12, 5, Text, color, self.game, 32)
-        menu = True
-        while menu:
-            self.game.events()
+        self.menu = True
+        while self.menu:
+            self.game.update()
+            self.game.draw()
+            self.game.events() 
             if self.game.mouse.CollideButton(self.Savebutton):
                 self.menu = False
-                self.keyboardInput(Keyboard(self.Savebutton.x, self.Savebutton.y, self.Savebutton.width, self.Savebutton.height, self.game, None))
-            self.game.screen.fill(BACKGROUND_COLOR)
-            self.Savebutton.update()
-            self.game.screen.blit(self.game.mouse.img, self.game.mouse.rect)
-            self.game.mouse.update()
-            pygame.display.flip()
+                self.keyboardInput(Keyboard(self.Savebutton.x, self.Savebutton.y, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, None))
     
-    def keyboardInput(self, keyboard):
-        keyboardInput = True
-        while keyboardInput:
-            pass
-
-
     def load_save(self):
         self.LoadSaveMenu('open save', ORANGE)
         self.save_data = []
