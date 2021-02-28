@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
         self.left = False
         self.right = False
         self.standing = True
-        self.weapon = 'bullet'
+        self.weapon = weapon
         self.moveDelay = 0
         self.Battling = False
         self.walkCount = 0

@@ -74,6 +74,7 @@ class mob(pygame.sprite.Sprite):
     
     def collision_etc(self):
         if pygame.sprite.spritecollideany(self, self.game.Bullets):
+            self.game.MobHitsound.play()
             self.healthpts -= 1
             if self.healthpts <= 0:
                 self.kill()

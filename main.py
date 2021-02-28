@@ -17,6 +17,7 @@ class Game:
     def __init__(self):
 
         pygame.init()
+        pygame.mixer.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption(TITLE)
         self.clock = pygame.time.Clock()
@@ -25,6 +26,11 @@ class Game:
         self.maps= ['mapexample.txt','maps/area-1-map.txt', 'maps/area-2-map.txt', 'maps/area-3-map.txt', 'maps/area-4-map.txt', 'maps/area-5-map.txt', 'maps/area-6-map.txt', ]
         self.levelNumber = 1
         self.load_data(self.maps[self.levelNumber-1])
+        
+        self.bulletsound = pygame.mixer.Sound("assets/bullet.wav")
+        self.MobHitsound = pygame.mixer.Sound("assets/mob-hit.wav")
+        self.mainthemestart = pygame.mixer.Sound("assets/soundtrack(start).wav")
+        self.mainTheme = pygame.mixer.Sound("assets/soundtrack-Main.wav")
 
     def load_data(self, filename):
         game_folder = path.dirname(__file__)
@@ -65,11 +71,14 @@ class Game:
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
         self.saveMenu = saveMenu(self)
         self.battle = BattleSystem(self)
+        self.mainthemestart.play()
+        self.mainTheme.play(-1)
         #self.saveMenu.load_save()
     
     def run(self):
         self.playing = True
         while self.playing:
+            pygame.mixer.music.stop()
             self.dt = self.clock.tick(FPS) / 1000
             self.update()
             self.draw()
@@ -124,7 +133,8 @@ class Game:
                     self.quit()
             
                 if event.key == pygame.K_SPACE and self.player.weapon != "none":
-                    if self.player.weapon == "bullet":
+                    bulletsound.play()
+                    if self.player.weapon == "bullet":                        
                         if self.player.up is True:
                             Bullet(self,self.player.rect.centerx,self.player.rect.centery,0,-10,)
 

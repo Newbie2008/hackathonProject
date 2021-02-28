@@ -69,6 +69,8 @@ class LevelEnd(pygame.sprite.Sprite):
             self.nextlevel()
     
     def nextlevel(self):
+        self.game.mainTheme.stop()
+        self.game.mainthemestart.stop()
         for sprite in self.game.all_sprites:
             sprite.kill()
         
