@@ -23,9 +23,15 @@ class Game:
         self.clock = pygame.time.Clock()
         self.enemies = []
         self.bullets = []
+        self.playing = False
         self.maps= ['mapexample.txt','maps/area-1-map.txt', 'maps/area-2-map.txt', 'maps/area-3-map.txt', 'maps/area-4-map.txt', 'maps/area-5-map.txt', 'maps/area-6-map.txt', ]
+        self.gui = pygame.sprite.Group()
+        self.mouse = Mouse(pygame.mouse.get_pos(), self, pygame.image.load('assets/cursor.png'))
+        self.saveMenu = saveMenu(self)
+        self.saveMenu.load_save()
         self.levelNumber = 1
         self.load_data(self.maps[self.levelNumber-1])
+        self.saveMenu = saveMenu(self)
         
         self.bulletsound = pygame.mixer.Sound("assets/bullet.wav")
         self.MobHitsound = pygame.mixer.Sound("assets/mob-hit.wav")
@@ -73,11 +79,10 @@ class Game:
                     pass
         self.camera = Camera(self.map.width, self.map.height)
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
-        self.saveMenu = saveMenu(self)
         self.battle = BattleSystem(self)
-        self.saveMenu.load_save()
         self.mainthemestart.play()
         self.mainTheme.play(-1)
+        pygame.mixer.music.set_volume(0.2)
     
     def run(self):
         self.playing = True
@@ -133,6 +138,7 @@ class Game:
                     self.screen.blit(gui.image, gui.rect)
                     self.screen.blit(gui.renderedText, gui.rect)
                 #self.screen.blit(self.saveMenu.Savebutton.renderedText, (self.saveMenu.Savebutton.rect.x + self.saveMenu.Savebutton.width/10, self.saveMenu.Savebutton.rect.y))
+                self.screen.blit(self.saveMenu.keyboard.cursor, self.saveMenu.keyboard.cursorrect)
                 self.screen.blit(self.mouse.image, self.mouse.rect)
                 pygame.display.flip()
 
@@ -148,12 +154,14 @@ class Game:
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.saveMenu.show_save_screen()
-                self.quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
+                if self.playing:
                     self.saveMenu.show_save_screen()
                     self.quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    if self.playing:
+                        self.saveMenu.show_save_screen()
+                        self.quit()
             
                 if event.key == pygame.K_SPACE and self.player.weapon != "none":
                     self.bulletsound.play()
