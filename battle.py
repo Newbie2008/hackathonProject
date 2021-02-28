@@ -47,16 +47,16 @@ class BattleSystem(pygame.sprite.Sprite):
     
     def check(self, mob):
         if len(self.keyboard.text) > 0:
-            self.text = int(self.keyboard.text)
+            self.text = float(self.keyboard.text)
             if self.text == self.answer:
-                self.Battling = False 
                 self.keyboard.text = ''
                 self.keyboard.screenText = ''
                 self.text = 0
-                mob.kill()
-            
+                mob.health -= 1
+                self.generateProblem()
             else:
                 self.game.player.health -= 1
+                self.generateProblem()
 
     def generateProblem(self):
         self.operatorList = ['+', '-', '*', '/']

@@ -74,7 +74,7 @@ class Game:
         self.mouse.update()
         if not self.player.Battling:
             self.all_sprites.update()
-        self.camera.update(self.player)
+            self.camera.update(self.player)
 
     def quit(self):
         pygame.quit()

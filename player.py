@@ -14,7 +14,6 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.health = PLAYER_HEALTH
-        self.attacks = ['attack1', 'attack2', 'attack3', 'attack4']
 
         self.up = False
         self.down = False
@@ -74,7 +73,9 @@ class Player(pygame.sprite.Sprite):
     
     def collide_etc(self):
         if pygame.sprite.spritecollideany(self, self.game.mobs):
-            self.health -= 1
+           self.health -= 1
+        if self.health <= 0:
+            self.game.quit()
     
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, game, x, y, velx, vely):

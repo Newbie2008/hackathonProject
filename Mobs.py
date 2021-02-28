@@ -20,7 +20,7 @@ class mob(pygame.sprite.Sprite):
         self.chance = 1
         self.speed = 40
         self.healthpts = 3
-        self.health = 10
+        self.health = 2
         self.healthbar = pygame.Surface((TILESIZE/8 * self.healthpts, TILESIZE))
         self.healthbarrect = self.healthbar.get_rect()
 
@@ -37,23 +37,24 @@ class mob(pygame.sprite.Sprite):
             if self.game.battle.Battling != True:
                 self.game.battle.battle(self)
         
-        if self.follow_radius.colliderect(self.game.player.rect):
-            if self.x != x:
-                if x < self.x:
-                    self.dx = -1
-                    self.dy = 0
-                if x > self.x:
-                    self.dx = 1
-                    self.dy = 0
-                self.move(self.dx, self.dy)
-            if self.y != y:
-                if y < self.y:
-                    self.dy = -1
-                    self.dx = 0
-                if y > self.y:
-                    self.dy = 1
-                    self.dx = 0
-                self.move(self.dx, self.dy)
+        if self.game.battle.Battling != True:
+            if self.follow_radius.colliderect(self.game.player.rect):
+                if self.x != x:
+                    if x < self.x:
+                        self.dx = -1
+                        self.dy = 0
+                    if x > self.x:
+                        self.dx = 1
+                        self.dy = 0
+                    self.move(self.dx, self.dy)
+                if self.y != y:
+                    if y < self.y:
+                        self.dy = -1
+                        self.dx = 0
+                    if y > self.y:
+                        self.dy = 1
+                        self.dx = 0
+                    self.move(self.dx, self.dy)
 
     def move(self, dx, dy):
         self.moveDelay += 1
@@ -77,3 +78,7 @@ class mob(pygame.sprite.Sprite):
             if self.healthpts <= 0:
                 self.kill()
                 return True
+        if self.health == 0:
+            self.kill()
+            self.game.battle.Battling = False
+            return True
