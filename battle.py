@@ -67,8 +67,7 @@ class BattleSystem:
         self.operator = self.operatorList[self.operatorGen]
         self.num1 = random.randint(0, 100)
         self.num2 = random.randint(1, 10)
-        self.equation = f' {self.num1} {self.operator} {self.num2}'
-        print(self.equation)
+        self.equation = ' {} {} {}'.format(self.num1, self.operator, self.num2)
         self.answer = 0
         if self.operator == '+': 
             self.answer = self.num1 + self.num2
