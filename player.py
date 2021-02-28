@@ -6,7 +6,7 @@ from particles import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, game, x, y, weapon="none"):
-        self.groups = game.all_sprites
+        self.groups = game.player
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pygame.Surface((TILESIZE, TILESIZE))
@@ -15,8 +15,10 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.health = PLAYER_HEALTH
-        self.walkDown = [pygame.image.load('assets/WalkDown1.png'), pygame.image.load('assets/WalkDown2.png'), pygame.image.load('assets/WalkDown3.png'), pygame.image.load('assets/WalkDown4.png')]
-        self.walkUp = [pygame.image.load('assets/WalkUp1.png'),]
+        self.walkDown = [pygame.image.load('assets/WalkDown1.png').convert_alpha(), pygame.image.load('assets/WalkDown2.png').convert_alpha(), pygame.image.load('assets/WalkDown3.png').convert_alpha(), pygame.image.load('assets/WalkDown4.png').convert_alpha()]
+        self.walkUp = [pygame.image.load('assets/WalkUp1.png').convert_alpha(),pygame.image.load('assets/WalkUp2.png').convert_alpha(),pygame.image.load('assets/WalkUp3.png').convert_alpha(),pygame.image.load('assets/WalkUp4.png').convert_alpha()]
+        self.walkLeft = [pygame.image.load('assets/WalkLeft1.png').convert_alpha(),pygame.image.load('assets/WalkLeft2.png').convert_alpha(),pygame.image.load('assets/WalkLeft3.png').convert_alpha(),pygame.image.load('assets/WalkLeft4.png').convert_alpha(),]
+        self.walkRight =[pygame.image.load('assets/WalkRight1.png').convert_alpha(),pygame.image.load('assets/WalkRight2.png').convert_alpha(),pygame.image.load('assets/WalkRight3.png').convert_alpha(),pygame.image.load('assets/WalkRight4.png').convert_alpha(),]
 
         self.up = False
         self.down = False
