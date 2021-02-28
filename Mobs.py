@@ -13,7 +13,7 @@ class mob(pygame.sprite.Sprite):
         self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.kill_radius = pygame.Rect(x * TILESIZE, y * TILESIZE, TILESIZE * 5, TILESIZE * 5)
-        self.follow_radius = pygame.Rect(x * TILESIZE, y * TILESIZE, TILESIZE * 20, TILESIZE * 20)
+        self.follow_radius = pygame.Rect(x * TILESIZE, y * TILESIZE, TILESIZE * MOBSIGHT, TILESIZE * MOBSIGHT)
         self.x = x
         self.y = y
         self.moveDelay = 0
@@ -54,7 +54,7 @@ class mob(pygame.sprite.Sprite):
 
     def move(self, dx, dy):
         self.moveDelay += 1
-        if self.moveDelay >= 40 and not self.collide_with_walls(dx, dy) and not self.collision_etc():
+        if self.moveDelay >= MOBSPEED and not self.collide_with_walls(dx, dy) and not self.collision_etc():
             self.x += dx
             self.y += dy
             self.moveDelay = 0
