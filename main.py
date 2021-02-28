@@ -22,7 +22,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.enemies = []
         self.bullets = []
-        self.maps= ['maps/area-1-map.txt', 'maps/area-2-map.txt', 'maps/area-3-map.txt', 'maps/area-4-map.txt', 'maps/area-5-map.txt', 'maps/area-6-map.txt', ]
+        self.maps= ['mapexample.txt','maps/area-1-map.txt', 'maps/area-2-map.txt', 'maps/area-3-map.txt', 'maps/area-4-map.txt', 'maps/area-5-map.txt', 'maps/area-6-map.txt', ]
         self.levelNumber = 1
         self.load_data(self.maps[self.levelNumber-1])
 
@@ -52,6 +52,8 @@ class Game:
                         )
                     else:
                         self.player = Player(self, col, row)
+                if tile == 'L':
+                    LevelEnd(self,col,row)
                 if tile == 'E':
                    mob(self,col,row)
                    #self.enemies.append(mob)

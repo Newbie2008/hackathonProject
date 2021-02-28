@@ -54,14 +54,14 @@ class LevelEnd(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         if sprite:
-            self.sprite = pygame.image.load(sprite)
+            self.image = pygame.image.load(sprite)
         else:
-            self.sprite = pygame.Surface((TILESIZE, TILESIZE))
-            self.sprite.fill(WHITE)
+            self.image = pygame.Surface((TILESIZE, TILESIZE))
+            self.image.fill(WHITE)
         self.rect = self.image.get_rect()
     
     def update(self):
-        self.rect.center = self.x, self.y
+        self.rect.x, self.rect.y = self.x * TILESIZE, self.y * TILESIZE
         self.check()
     
     def check(self):
@@ -69,7 +69,7 @@ class LevelEnd(pygame.sprite.Sprite):
             self.nextlevel()
     
     def nextlevel(self):
-        for sprite in self.game.sprites:
+        for sprite in self.game.all_sprites:
             sprite.kill()
         
         for sprite in self.game.gui:
@@ -77,3 +77,5 @@ class LevelEnd(pygame.sprite.Sprite):
         
         self.game.playing = False
         self.game.new()
+        self.game.levelNumber +=1
+        self.game.load_data(self.game.maps[self.game.levelNumber-1])
