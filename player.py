@@ -15,7 +15,8 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.health = PLAYER_HEALTH
-        self.walkDown = Spritesheet('assets/RoBoBo-WalkDown.png', 12, self.game, 1)
+        self.walkDown = [pygame.image.load('assets/WalkDown1.png'), pygame.image.load('assets/WalkDown2.png'), pygame.image.load('assets/WalkDown3.png'), pygame.image.load('assets/WalkDown4.png')]
+        self.walkUp = [pygame.image.load('assets/WalkUp1.png'),]
 
         self.up = False
         self.down = False
