@@ -46,6 +46,8 @@ class Player(pygame.sprite.Sprite):
     def draw(self):
         if self.walkCount + 1 >= 4:
             self.walkCount = 0
+        if self.spriteChangeDelay >= 5:
+            self.walkCount += 1
         if not(self.standing):
             if self.left:
                 self.image = self.walkLeft[self.walkCount]
