@@ -18,4 +18,5 @@ class Spritesheet:
         self.cells = list([(index % columns * w, index/columns * h,w,h)for index in range(self.totalCells)])
         self.handle = list()
     
-    def draw(self, surface, cellIndex, x, y, handle=0)
+    def draw(self, surface, cellIndex, x, y, handle=0):
+        pass
