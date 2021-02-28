@@ -74,11 +74,10 @@ class Game:
                    mob(self,col,row)
                    #self.enemies.append(mob)
                 if tile == "C":
-                    self.chest = Chest(self, col, row)
+                    self.chest = Chest(self, col, row, pygame.image.load('assets/Chest.png'))
                 if tile == ".":
                     pass
         self.camera = Camera(self.map.width, self.map.height)
-        self.mouse = Mouse(pygame.mouse.get_pos(), self)
         self.battle = BattleSystem(self)
         self.mainthemestart.play()
         self.mainTheme.play(-1)

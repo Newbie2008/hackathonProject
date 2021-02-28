@@ -28,7 +28,7 @@ class Chest(pygame.sprite.Sprite):
             self.image = pygame.Surface((TILESIZE, TILESIZE))
             self.image.fill(WHITE)
         else:
-            pass
+            self.image = sprite
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
