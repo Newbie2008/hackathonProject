@@ -22,9 +22,11 @@ class mob(pygame.sprite.Sprite):
         self.healthpts = 3
         self.health = 10
         self.healthbar = pygame.Surface((TILESIZE/8 * self.healthpts, TILESIZE))
+        self.healthbarrect = self.healthbar.get_rect()
 
     def update(self):
         self.collision_etc()
+        self.healthbarrect.center = self.x, self.y - TILESIZE
         self.rect.x, self.rect.y = self.x * TILESIZE, self.y * TILESIZE
         self.plan_move(self.game.player.x, self.game.player.y)
 

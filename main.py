@@ -25,7 +25,7 @@ class Game:
 
     def load_data(self):
         game_folder = path.dirname(__file__)
-        self.map = Map(path.join(game_folder, "mapexample.txt"))
+        self.map = Map(path.join(game_folder, "area-1-map.txt "))
 
     def new(self):
         self.all_sprites = pygame.sprite.Group()
@@ -86,6 +86,8 @@ class Game:
         if self.battle.Battling == False:
             for sprite in self.all_sprites:
                 self.screen.blit(sprite.image, self.camera.apply(sprite))
+            #for mob in self.mobs:
+            #    self.screen.blit(mob.healthbar, mob.healthbarrect)
             pygame.display.flip()
         else:
             self.screen.fill(BACKGROUND_COLOR)
