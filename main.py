@@ -80,6 +80,9 @@ class Game:
     def quit(self):
         pygame.quit()
         sys.exit()
+    
+    def displayUpdate():
+        pygame.display.update()
 
 
     def draw(self):
