@@ -31,7 +31,7 @@ class saveMenu:
         self.f.write("{}\r\n".format(self.game.player.rect.x//TILESIZE))
         self.f.write("{}\r\n".format(self.game.player.rect.y//TILESIZE))
         self.f.write("{}\r\n".format(self.game.player.weapon))
-        self.savemenu = False
+        self.savemenu = False 
         self.game.quit()
 
     def LoadSaveMenu(self):

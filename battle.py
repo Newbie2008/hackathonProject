@@ -8,8 +8,11 @@ class BattleSystem:
     def __init__(self, game):
         self.game = game
 
-        self.playerimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
-        self.playerimg.fill(YELLOW)
+        self.playerimg = self.game.player.walkUp[0]
+        for x in range(4): 
+            self.playerimg = pygame.transform.scale2x(self.playerimg)
+        #self.playerimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
+        #self.playerimg.fill(YELLOW)
 
         self.mobimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
         self.mobimg.fill(RED)

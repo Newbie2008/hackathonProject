@@ -24,8 +24,13 @@ class Game:
         self.enemies = []
         self.bullets = []
         self.maps= ['mapexample.txt','maps/area-1-map.txt', 'maps/area-2-map.txt', 'maps/area-3-map.txt', 'maps/area-4-map.txt', 'maps/area-5-map.txt', 'maps/area-6-map.txt', ]
+        self.gui = pygame.sprite.Group()
+        self.mouse = Mouse(pygame.mouse.get_pos(), self, pygame.image.load('assets/cursor.png'))
+        self.saveMenu = saveMenu(self)
+        self.saveMenu.load_save()
         self.levelNumber = 1
         self.load_data(self.maps[self.levelNumber-1])
+        self.saveMenu = saveMenu(self)
         
         self.bulletsound = pygame.mixer.Sound("assets/bullet.wav")
         self.MobHitsound = pygame.mixer.Sound("assets/mob-hit.wav")
@@ -73,11 +78,10 @@ class Game:
                     pass
         self.camera = Camera(self.map.width, self.map.height)
         self.mouse = Mouse(pygame.mouse.get_pos(), self)
-        self.saveMenu = saveMenu(self)
         self.battle = BattleSystem(self)
-        self.saveMenu.load_save()
         self.mainthemestart.play()
         self.mainTheme.play(-1)
+        pygame.mixer.music.set_volume(0.2)
     
     def run(self):
         self.playing = True
