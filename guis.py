@@ -166,6 +166,9 @@ class Keyboard(pygame.sprite.Sprite):
                         self.text = self.text + '8'
                     if event.key == pygame.K_9:
                         self.text = self.text + '9'
+                    
+                    self.cursorx += self.font_size - TILESIZE * 2
+                    self.game.battle.text = int(self.text)
     
     def renderText(self):
         self.screenText = self.font.render(str(self.text), True, (BLACK))

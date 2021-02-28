@@ -25,6 +25,7 @@ class BattleSystem(pygame.sprite.Sprite):
         self.Battling = False
         self.width = 64
         self.height = 64
+        self.text = 0
 
     def battle(self, mob):
         self.Battling = True
@@ -39,3 +40,7 @@ class BattleSystem(pygame.sprite.Sprite):
             self.game.draw()
             for gui in self.game.gui:
                 gui.update()
+            if self.text == 1:
+                self.Battling = False 
+                self.keyboard.text = '0'
+                mob.kill()
