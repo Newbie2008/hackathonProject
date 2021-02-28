@@ -23,12 +23,45 @@ class mob(pygame.sprite.Sprite):
         self.health = 2
         self.healthbar = pygame.Surface((TILESIZE/8 * self.healthpts, TILESIZE))
         self.healthbarrect = self.healthbar.get_rect()
+        self.walkLeft = [pygame.image.load('assets/GhostLeft1.png').convert_alpha(),pygame.image.load('assets/GhostLeft2.png').convert_alpha(),pygame.image.load('assets/GhostLeft3.png').convert_alpha(),pygame.image.load('assets/GhostLeft4.png').convert_alpha(),pygame.image.load('assets/GhostLeft5.png').convert_alpha()]
+        self.walkRight = [pygame.image.load('assets/GhostRight1.png').convert_alpha(),pygame.image.load('assets/GhostRight2.png').convert_alpha(),pygame.image.load('assets/GhostRight3.png').convert_alpha(),pygame.image.load('assets/GhostRight4.png').convert_alpha(),pygame.image.load('assets/GhostRight5.png').convert_alpha()]
+        self.walkUp = [pygame.image.load('assets/GhostUp1.png').convert_alpha(),pygame.image.load('assets/GhostUp2.png').convert_alpha(),pygame.image.load('assets/GhostUp3.png').convert_alpha(),pygame.image.load('assets/GhostUp4.png').convert_alpha(),pygame.image.load('assets/GhostUp5.png').convert_alpha(),]
+
+        self.left = False
+        self.right = False
+        self.up = False
+        self.walkcount = 0
+        self.spritechangedelay = 0
 
     def update(self):
         self.collision_etc()
         self.healthbarrect.center = self.x, self.y - TILESIZE
         self.rect.x, self.rect.y = self.x * TILESIZE, self.y * TILESIZE
         self.plan_move(self.game.player.x, self.game.player.y)
+    
+    def draw(self):
+        if self.walkCount + 1 >= 4:
+            self.walkCount = 0
+        if self.spriteChangeDelay >= 5:
+            self.walkCount += 1
+        if not(self.standing):
+            if self.left:
+                self.image = self.walkLeft[self.walkCount]
+                self.spriteChangeDelay += 1 
+            if self.right:
+                self.image = self.walkRight[self.walkCount]
+                self.spriteChangeDelay += 1 
+            if self.up:
+                self.image = self.walkUp[self.walkCount]
+                self.spriteChangeDelay += 1 
+            
+        else:
+            if self.left:
+                self.image = self.walkLeft[0]
+            if self.right:
+                self.image = self.walkRight[0]
+            if self.up:
+                self.image = self.walkUp[0]
 
     def plan_move(self, x, y):
         self.kill_radius.center = self.rect.center
@@ -43,14 +76,23 @@ class mob(pygame.sprite.Sprite):
                     if x < self.x:
                         self.dx = -1
                         self.dy = 0
+                        self.left = True
+                        self.right = False
+                        self.up = False
                     if x > self.x:
                         self.dx = 1
                         self.dy = 0
+                        self.left = False
+                        self.right = True
+                        self.up = False
                     self.move(self.dx, self.dy)
                 if self.y != y:
                     if y < self.y:
                         self.dy = -1
                         self.dx = 0
+                        self.left = False
+                        self.right = False
+                        self.up = True
                     if y > self.y:
                         self.dy = 1
                         self.dx = 0

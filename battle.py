@@ -14,8 +14,11 @@ class BattleSystem:
         #self.playerimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
         #self.playerimg.fill(YELLOW)
 
-        self.mobimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
-        self.mobimg.fill(RED)
+        #self.mobimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
+        #self.mobimg.fill(RED)
+        self.mobimg = pygame.image.load('assets/GhostLeft1.png')
+        for x in range(4): 
+            self.mobimg = pygame.transform.scale2x(self.mobimg)
         
         self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH, TILESIZE))
         self.playerHealthBar.fill(RED)
