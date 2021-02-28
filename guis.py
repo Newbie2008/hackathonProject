@@ -35,7 +35,7 @@ class saveMenu:
         self.game.quit()
 
     def LoadSaveMenu(self):
-        self.Savebutton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, '', LIGHTGREY, self.game, 64, self.game.gui)
+        self.Savebutton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'Open Save', LIGHTGREY, self.game, 64, self.game.gui)
         self.NewSavebutton =  Button(self.Savebutton.x, self.Savebutton.y + self.Savebutton.height + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'new save', LIGHTGREY, self.game, 64, self.game.gui)
         self.keyboard  = Keyboard(self.Savebutton.x, self.NewSavebutton.y + KEYBOARDHEIGHT + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, self.game.gui)
         self.menu = True
@@ -131,7 +131,7 @@ class Keyboard(pygame.sprite.Sprite):
         self.game = game
         self.width = width
         self.height = height
-        self.text = '1'
+        self.text = ''
         self.font_size = KEYBOARDHEIGHT - 4
         self.font = pygame.font.Font('freesansbold.ttf', self.font_size)
         self.x = x

@@ -132,7 +132,7 @@ class Game:
                     gui.update()
                     self.screen.blit(gui.image, gui.rect)
                     self.screen.blit(gui.renderedText, gui.rect)
-                self.screen.blit(self.saveMenu.Savebutton.renderedText, (self.saveMenu.Savebutton.rect.x + self.saveMenu.Savebutton.width/10, self.saveMenu.Savebutton.rect.y))
+                #self.screen.blit(self.saveMenu.Savebutton.renderedText, (self.saveMenu.Savebutton.rect.x + self.saveMenu.Savebutton.width/10, self.saveMenu.Savebutton.rect.y))
                 self.screen.blit(self.mouse.image, self.mouse.rect)
                 pygame.display.flip()
 
