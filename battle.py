@@ -27,9 +27,6 @@ class BattleSystem(pygame.sprite.Sprite):
         self.Battling = False
         self.width = 64
         self.height = 64
-        
-
-
 
     def battle(self, mob):
         self.Battling = True

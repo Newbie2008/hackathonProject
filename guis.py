@@ -181,6 +181,9 @@ class Keyboard(pygame.sprite.Sprite):
                     if event.key == pygame.K_PERIOD:
                         self.text = self.text + '.'
                         self.cursorx += self.font_size - TILESIZE * 2
+                    if event.key == pygame.K_MINUS:
+                        self.text = self.text + '-'
+                        self.cursorx += self.font_size - TILESIZE * 2
                     if event.key == pygame.K_RETURN:
                         self.game.battle.check(mob)
                         self.text = ''
