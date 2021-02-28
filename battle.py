@@ -1,6 +1,7 @@
 from settings import *
 import pygame
 from guis import *
+import random
 
 class BattleSystem(pygame.sprite.Sprite):
 
@@ -15,7 +16,7 @@ class BattleSystem(pygame.sprite.Sprite):
         self.mobimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
         self.mobimg.fill(RED)
         
-        self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH, TILESIZE * 2))
+        self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH, TILESIZE * 10))
         self.playerHealthBar.fill(RED)
         self.mobHealthBar = pygame.Surface((TILESIZE, TILESIZE * 2))
         self.mobHealthBar.fill(RED)
@@ -26,11 +27,13 @@ class BattleSystem(pygame.sprite.Sprite):
         self.Battling = False
         self.width = 64
         self.height = 64
-        self.text = 0
+        
+
 
 
     def battle(self, mob):
         self.Battling = True
+        self.generateProblem()
         self.keyboard.cursorx = self.keyboard.x - self.keyboard.width/2 + CURSORWIDTH
         while self.Battling:
             self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH * 1.5, TILESIZE))
@@ -47,9 +50,30 @@ class BattleSystem(pygame.sprite.Sprite):
     def check(self, mob):
         if len(self.keyboard.text) > 0:
             self.text = int(self.keyboard.text)
-            if self.text == 1:
+            if self.text == self.answer:
                 self.Battling = False 
                 self.keyboard.text = ''
                 self.keyboard.screenText = ''
                 self.text = 0
                 mob.kill()
+
+    def generateProblem(self):
+        self.operatorList = ['+', '-', '*', '/']
+        self.operatorGen = random.randint(0, 3)
+        self.operator = self.operatorList[self.operatorGen]
+        self.num1 = random.randint(0, 10)
+        self.num2 = random.randint(0, 10)
+        self.equation = f'{self.num1}  {self.operator}  {self.num2}'
+        print(self.equation)
+        self.answer = 0
+        if self.operator == '+': 
+            self.answer = self.num1 + self.num2
+
+        if self.operator == '-': 
+            self.answer = self.num1 - self.num2
+        
+        if self.operator == '*': 
+            self.answer = self.num1 * self.num2
+
+        if self.operator == '/': 
+            self.answer = self.num1 / self.num2

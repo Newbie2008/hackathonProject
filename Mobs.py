@@ -21,6 +21,7 @@ class mob(pygame.sprite.Sprite):
         self.speed = 40
         self.healthpts = 3
         self.health = 10
+        self.healthbar = pygame.Surface((TILESIZE/8 * self.healthpts, TILESIZE))
 
     def update(self):
         self.collision_etc()
