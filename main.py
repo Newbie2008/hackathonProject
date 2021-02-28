@@ -91,7 +91,7 @@ class Game:
             self.screen.fill(BACKGROUND_COLOR)
             self.screen.blit(self.battle.playerimg, (0, HEIGHT -TILESIZE * 20))
             self.screen.blit(self.battle.mobimg, (WIDTH -TILESIZE * 20, 0))
-            self.screen.blit(self.battle.playerHealthBar, (0 + self.battle.width/2, HEIGHT -TILESIZE * 0 - TILESIZE * 4))
+            self.screen.blit(self.battle.playerHealthBar, (0 + self.battle.width/2, HEIGHT -TILESIZE * 24))
             self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 37, 0 + self.battle.height/2))
             self.screen.blit(self.battle.keyboard.img, self.battle.keyboard.rect)
             self.screen.blit(self.battle.keyboard.cursor, self.battle.keyboard.cursorrect)

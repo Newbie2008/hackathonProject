@@ -16,7 +16,7 @@ class BattleSystem(pygame.sprite.Sprite):
         self.mobimg = pygame.Surface((TILESIZE * 20, TILESIZE * 20))
         self.mobimg.fill(RED)
         
-        self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH, TILESIZE * 10))
+        self.playerHealthBar = pygame.Surface((TILESIZE * PLAYER_HEALTH, TILESIZE))
         self.playerHealthBar.fill(RED)
         self.mobHealthBar = pygame.Surface((TILESIZE, TILESIZE * 2))
         self.mobHealthBar.fill(RED)
