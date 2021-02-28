@@ -8,11 +8,10 @@ class Wall(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         if sprite:
-            self.image = sprite
+            self.image = pygame.image.load(sprite)
         else:
             self.image = pygame.Surface((TILESIZE, TILESIZE))
-        
-        self.image.fill(GREEN)
+            self.image.fill(GREEN)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
