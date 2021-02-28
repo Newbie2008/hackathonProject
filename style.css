@@ -39,6 +39,11 @@
   width: 33.33%;
   float: left;
 }
+
+.one-of-four {
+  width: 25%;
+  float: left;
+}
 /* HEADER BEGINS HERE */
 
 #header {
@@ -211,6 +216,20 @@ nav img {
 
 /* END DOWNLOAD SECTION */
 
+/* START INSTRUCTION SECTION */
+#instructions {
+  margin-top: 50px;
+  text-align: center;
+}
+#instructions h1 {
+  color: black;
+  padding: 25px;
+  font-size: 30px;
+}
+
+#instructions h3 {
+  color: black;
+}
 /* TEAM SECTION */
 
 #team {
