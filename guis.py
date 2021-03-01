@@ -13,6 +13,7 @@ class saveMenu:
         self.savex = 0
         self.savey = 0
         self.save_data = []
+        self.levelNumber = 1
     
     def show_save_screen(self):
         self.yesButton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'Save', LIGHTGREY, self.game, 64, self.game.gui)
@@ -32,6 +33,7 @@ class saveMenu:
         self.f.write("{}\r\n".format(self.game.player.rect.x//TILESIZE))
         self.f.write("{}\r\n".format(self.game.player.rect.y//TILESIZE))
         self.f.write("{}\r\n".format(self.game.player.weapon))
+        self.f.write("{}\r\n".format(self.game.levelNumber))
         self.savemenu = False 
         self.game.quit()
 
@@ -67,6 +69,7 @@ class saveMenu:
             self.savey = self.save_data[1]
             self.savex = int(self.savex)
             self.savey = int(self.savey)
+            self.levelNumber = self.save_data[3]
 
 class Button(pygame.sprite.Sprite):
 
