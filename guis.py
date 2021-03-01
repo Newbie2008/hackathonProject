@@ -1,6 +1,3 @@
-from sys import flags
-
-from pygame import rect
 from settings import *
 import pygame
 
@@ -12,6 +9,10 @@ class saveMenu:
         self.savemenu = False
         self.menu = False
         self.text = ''
+        self.filename = 'save.txt'
+        self.savex = 0
+        self.savey = 0
+        self.save_data = []
     
     def show_save_screen(self):
         self.yesButton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'Save', LIGHTGREY, self.game, 64, self.game.gui)
@@ -37,41 +38,35 @@ class saveMenu:
     def LoadSaveMenu(self):
         self.Savebutton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'Open Save', LIGHTGREY, self.game, 64, self.game.gui)
         self.NewSavebutton =  Button(self.Savebutton.x, self.Savebutton.y + self.Savebutton.height + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'new save', LIGHTGREY, self.game, 64, self.game.gui)
-        self.keyboard  = Keyboard(self.Savebutton.x, self.NewSavebutton.y + KEYBOARDHEIGHT + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, self.game.gui, 'Enter filename here', 32)
+        #self.keyboard  = Keyboard(self.Savebutton.x, self.NewSavebutton.y + KEYBOARDHEIGHT + TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, self.game.gui, 'Enter filename here', 32)
         self.menu = True
         while self.menu:
             self.game.update()
             self.game.draw()
-            self.game.events() 
+            self.game.events()
             if self.game.mouse.CollideButton(self.Savebutton):
                 self.Savebutton.kill()
                 self.NewSavebutton.kill()
-                self.keyboard.kill()
+                self.loadSaveData = True
                 self.menu = False
             if self.game.mouse.CollideButton(self.NewSavebutton):
-                self.filename = 'none'
                 self.Savebutton.kill()
                 self.NewSavebutton.kill()
-                self.keyboard.kill()
                 self.menu = False
+                self.loadSaveData = False
     
     def load_save(self):
         self.LoadSaveMenu()
         self.save_data = []
-        if self.filename == "none":
-            self.loadSaveData = False
-        if self.filename != "none":
+        if self.loadSaveData == True:
             with open(self.filename, "rt") as f:
                 for line in f:
                     self.save_data.append(line.strip())
-
+            
             self.savex = self.save_data[0]
             self.savey = self.save_data[1]
             self.savex = int(self.savex)
             self.savey = int(self.savey)
-            self.loadSaveData = True
-        else:
-            self.loadSaveData = False
 
 class Button(pygame.sprite.Sprite):
 
@@ -166,6 +161,7 @@ class Keyboard(pygame.sprite.Sprite):
                     self.text = ''
                 if event.key == pygame.K_a:
                     self.text = self.text + 'a'
+                    self.cursorx += self.font_size - TILESIZE * 2
                 if event.key == pygame.K_b:
                     self.text = self.text + 'b'
                 if event.key == pygame.K_c:
@@ -214,6 +210,26 @@ class Keyboard(pygame.sprite.Sprite):
                     self.text = self.text + 'x'
                 if event.key == pygame.K_y:
                     self.text = self.text + 'y'
+                if event.key == pygame.K_z:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_0:
+                    self.text = self.text + '0'
+                if event.key == pygame.K_1:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_2:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_3:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_4:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_5:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_6:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_7:
+                    self.text = self.text + 'z'
+                if event.key == pygame.K_8:
+                    self.text = self.text + 'z'
                 if event.key == pygame.K_z:
                     self.text = self.text + 'z'
     

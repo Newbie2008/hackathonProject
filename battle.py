@@ -26,7 +26,7 @@ class BattleSystem:
         self.mobHealthBar.fill(RED)
 
         self.attacks = []
-        self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, self.game.battles, '', KEYBOARDHEIGHT/4, None)
+        self.keyboard = Keyboard(WIDTH - KEYBOARDWIDTH, HEIGHT - KEYBOARDHEIGHT, KEYBOARDWIDTH, KEYBOARDHEIGHT, self.game, self.game.battles, '', round(KEYBOARDHEIGHT/4), None)
         self.questionBoard = Button(self.keyboard.x, self.keyboard.y - KEYBOARDHEIGHT - TILESIZE, KEYBOARDWIDTH, KEYBOARDHEIGHT, '', LIGHTGREY, self.game, self.keyboard.font_size, self.game.battles)
         
         self.Battling = False
