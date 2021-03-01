@@ -31,7 +31,6 @@ class Game:
         self.saveMenu.load_save()
         self.levelNumber = 1
         self.load_data(self.maps[self.levelNumber-1])
-        self.saveMenu = saveMenu(self)
         
         self.bulletsound = pygame.mixer.Sound("assets/bullet.wav")
         self.MobHitsound = pygame.mixer.Sound("assets/mob-hit.wav")
@@ -53,20 +52,17 @@ class Game:
         self.Bullets = pygame.sprite.Group()
         self.gui = pygame.sprite.Group()
         self.chests = pygame.sprite.Group()
-        self.saveMenu = saveMenu(self)
         for row, tiles in enumerate(self.map.data):
             for col, tile in enumerate(tiles):
                 if tile == "1":
                     Wall(self, col, row, 'assets/WallTile.png')
                 if tile == "P":
                     if self.saveMenu.loadSaveData == True:
-                        self.player = Player(
-                            self,
-                            self.savex,
-                            self.savey,
-                            self.save_data[2],
-                        )
-                    else:
+                        self.player = Player(self,
+                            self.saveMenu.savex,
+                            self.saveMenu.savey,
+                            self.saveMenu.save_data[2])
+                    if self.saveMenu.loadSaveData == False:
                         self.player = Player(self, col, row)
                 if tile == 'L':
                     LevelEnd(self,col,row)
@@ -137,7 +133,7 @@ class Game:
                     self.screen.blit(gui.image, gui.rect)
                     self.screen.blit(gui.renderedText, gui.rect)
                 #self.screen.blit(self.saveMenu.Savebutton.renderedText, (self.saveMenu.Savebutton.rect.x + self.saveMenu.Savebutton.width/10, self.saveMenu.Savebutton.rect.y))
-                self.screen.blit(self.saveMenu.keyboard.cursor, self.saveMenu.keyboard.cursorrect)
+                #self.screen.blit(self.saveMenu.keyboard.cursor, self.saveMenu.keyboard.cursorrect)
                 self.screen.blit(self.mouse.image, self.mouse.rect)
                 pygame.display.flip()
 
@@ -155,12 +151,12 @@ class Game:
             if event.type == pygame.QUIT:
                 if self.playing:
                     self.saveMenu.show_save_screen()
-                    self.quit()
+                self.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if self.playing:
                         self.saveMenu.show_save_screen()
-                        self.quit()
+                    self.quit()
             
                 if event.key == pygame.K_SPACE and self.player.weapon != "none":
                     self.bulletsound.play()

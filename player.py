@@ -118,6 +118,11 @@ class Player(pygame.sprite.Sprite):
             ):
                 self.rect.centery -= PLAYER_WIDTH / 2
                 return True
+        
+        for chest in self.game.chests:
+            if self.rect.colliderect(chest.rect):
+                self.rect.centery -= PLAYER_WIDTH/2
+                chest.opened = True
     
     def collide_etc(self):
         if pygame.sprite.spritecollideany(self, self.game.mobs):
