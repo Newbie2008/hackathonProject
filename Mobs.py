@@ -20,7 +20,7 @@ class mob(pygame.sprite.Sprite):
         self.chance = 1
         self.speed = 40
         self.healthpts = 3
-        self.health = 2
+        self.health = 5
         self.healthbar = pygame.Surface((TILESIZE/8 * self.healthpts, TILESIZE))
         self.healthbarrect = self.healthbar.get_rect()
         self.walkLeft = [pygame.image.load('assets/GhostLeft1.png').convert_alpha(),pygame.image.load('assets/GhostLeft2.png').convert_alpha(),pygame.image.load('assets/GhostLeft3.png').convert_alpha(),pygame.image.load('assets/GhostLeft4.png').convert_alpha(),pygame.image.load('assets/GhostLeft5.png').convert_alpha()]

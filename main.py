@@ -121,7 +121,7 @@ class Game:
                     self.screen.blit(self.battle.playerHealthBar, (0 + self.battle.width/2, HEIGHT -TILESIZE * 24))
                     self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 37, 0 + self.battle.height/2))
                     self.screen.blit(self.battle.keyboard.image, self.battle.keyboard.rect)
-                    self.screen.blit(self.battle.keyboard.cursor, self.battle.keyboard.cursorrect)
+                   # self.screen.blit(self.battle.keyboard.cursor, self.battle.keyboard.cursorrect)
                     self.screen.blit(self.battle.keyboard.renderedText, self.battle.keyboard.rect)
                     self.screen.blit(self.battle.questionBoard.image, self.battle.questionBoard.rect)
                     self.screen.blit(self.battle.questionBoard.renderedText, self.battle.questionBoard.rect)

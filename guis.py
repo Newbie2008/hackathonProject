@@ -134,9 +134,9 @@ class Keyboard(pygame.sprite.Sprite):
         self.y = y 
         self.renderedText = self.font.render(str(self.text), True, (BLACK))
         
-        self.cursor = pygame.Surface((CURSORWIDTH, CURSORHEIGHT))
-        self.cursor.fill(BLACK)
-        self.cursorrect = self.cursor.get_rect()
+        #self.cursor = pygame.Surface((CURSORWIDTH, CURSORHEIGHT))
+        #self.cursor.fill(BLACK)
+        #self.cursorrect = self.cursor.get_rect()
         
         if img:
             self.image = pygame.image.load(img)
@@ -146,12 +146,12 @@ class Keyboard(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
 
-        self.cursorx = self.x - self.width/2 + CURSORWIDTH
-        self.cursory = self.y
+        #self.cursorx = self.x - self.width/2 + CURSORWIDTH
+        #self.cursory = self.y
 
     def update(self):
         self.rect.center = self.x, self.y
-        self.cursorrect.center = self.cursorx, self.cursory
+        #self.cursorrect.center = self.cursorx, self.cursory
         self.renderText()
 
     def textinput(self):
