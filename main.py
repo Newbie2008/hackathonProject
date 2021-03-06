@@ -29,7 +29,7 @@ class Game:
         self.mouse = Mouse(pygame.mouse.get_pos(), self, pygame.image.load('assets/cursor.png'))
         self.saveMenu = saveMenu(self)
         self.saveMenu.load_save()
-        self.levelNumber = 1
+        self.levelNumber = int(self.saveMenu.levelNumber)
         self.load_data(self.maps[self.levelNumber-1])
         
         self.bulletsound = pygame.mixer.Sound("assets/bullet.wav")
@@ -57,13 +57,11 @@ class Game:
                 if tile == "1":
                     Wall(self, col, row, 'assets/WallTile.png')
                 if tile == "P":
-                    if self.saveMenu.loadSaveData == True:
-                        self.player = Player(self,
-                            self.saveMenu.savex,
-                            self.saveMenu.savey,
-                            self.saveMenu.save_data[2])
                     if self.saveMenu.loadSaveData == False:
                         self.player = Player(self, col, row)
+                    if self.saveMenu.loadSaveData == True:
+                        self.player = Player(self,self.saveMenu.savex,self.saveMenu.savey,self.saveMenu.save_data[2])
+                        self.saveMenu.loadSaveData = False
                 if tile == 'L':
                     LevelEnd(self,col,row)
                 if tile == 'E':
@@ -121,7 +119,7 @@ class Game:
                     self.screen.blit(self.battle.playerHealthBar, (0 + self.battle.width/2, HEIGHT -TILESIZE * 24))
                     self.screen.blit(self.battle.mobHealthBar, (WIDTH - TILESIZE * 37, 0 + self.battle.height/2))
                     self.screen.blit(self.battle.keyboard.image, self.battle.keyboard.rect)
-                    self.screen.blit(self.battle.keyboard.cursor, self.battle.keyboard.cursorrect)
+                   # self.screen.blit(self.battle.keyboard.cursor, self.battle.keyboard.cursorrect)
                     self.screen.blit(self.battle.keyboard.renderedText, self.battle.keyboard.rect)
                     self.screen.blit(self.battle.questionBoard.image, self.battle.questionBoard.rect)
                     self.screen.blit(self.battle.questionBoard.renderedText, self.battle.questionBoard.rect)

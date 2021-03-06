@@ -13,6 +13,7 @@ class saveMenu:
         self.savex = 0
         self.savey = 0
         self.save_data = []
+        self.levelNumber = 1
     
     def show_save_screen(self):
         self.yesButton =  Button(WIDTH/2, HEIGHT/2, KEYBOARDWIDTH, KEYBOARDHEIGHT, 'Save', LIGHTGREY, self.game, 64, self.game.gui)
@@ -32,6 +33,7 @@ class saveMenu:
         self.f.write("{}\r\n".format(self.game.player.rect.x//TILESIZE))
         self.f.write("{}\r\n".format(self.game.player.rect.y//TILESIZE))
         self.f.write("{}\r\n".format(self.game.player.weapon))
+        self.f.write("{}\r\n".format(self.game.levelNumber))
         self.savemenu = False 
         self.game.quit()
 
@@ -67,6 +69,7 @@ class saveMenu:
             self.savey = self.save_data[1]
             self.savex = int(self.savex)
             self.savey = int(self.savey)
+            self.levelNumber = self.save_data[3]
 
 class Button(pygame.sprite.Sprite):
 
@@ -134,9 +137,9 @@ class Keyboard(pygame.sprite.Sprite):
         self.y = y 
         self.renderedText = self.font.render(str(self.text), True, (BLACK))
         
-        self.cursor = pygame.Surface((CURSORWIDTH, CURSORHEIGHT))
-        self.cursor.fill(BLACK)
-        self.cursorrect = self.cursor.get_rect()
+        #self.cursor = pygame.Surface((CURSORWIDTH, CURSORHEIGHT))
+        #self.cursor.fill(BLACK)
+        #self.cursorrect = self.cursor.get_rect()
         
         if img:
             self.image = pygame.image.load(img)
@@ -146,12 +149,12 @@ class Keyboard(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
 
-        self.cursorx = self.x - self.width/2 + CURSORWIDTH
-        self.cursory = self.y
+        #self.cursorx = self.x - self.width/2 + CURSORWIDTH
+        #self.cursory = self.y
 
     def update(self):
         self.rect.center = self.x, self.y
-        self.cursorrect.center = self.cursorx, self.cursory
+        #self.cursorrect.center = self.cursorx, self.cursory
         self.renderText()
 
     def textinput(self):

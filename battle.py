@@ -39,9 +39,9 @@ class BattleSystem:
         self.keyboard.cursorx = self.keyboard.x - self.keyboard.width/2 + CURSORWIDTH
         while self.Battling:
             self.game.events()
-            self.playerHealthBar = pygame.Surface((TILESIZE * self.game.player.health * 1.5, TILESIZE))
+            self.playerHealthBar = pygame.Surface((TILESIZE * self.game.player.health * 2, TILESIZE))
             self.playerHealthBar.fill(RED)
-            self.mobHealthBar = pygame.Surface((TILESIZE * mob.health * 1.5, TILESIZE))
+            self.mobHealthBar = pygame.Surface((TILESIZE * mob.health * 2, TILESIZE))
             self.mobHealthBar.fill(RED)
             self.game.update()
             for sprite in self.game.battles:

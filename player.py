@@ -29,8 +29,14 @@ class Player(pygame.sprite.Sprite):
         self.down = False
         self.left = False
         self.right = False
+
+        self.standleft = False
+        self.standright = False
+        self.standdown = True
+        self.standup = False
+
         self.standing = True
-        self.weapon = 'bullet'
+        self.weapon = weapon
         self.moveDelay = 0
         self.Battling = False
         self.walkCount = 0
@@ -83,31 +89,59 @@ class Player(pygame.sprite.Sprite):
     def get_keys(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
-            self.move(0, -1)
-            self.up = True
-            self.down = False
-            self.left = False
-            self.right = False
+            if self.standleft == False and self.standright == False and self.standdown == False:
+                self.move(0, -1)
+                self.up = True
+                self.down = False
+                self.left = False
+                self.right = False
+
+                self.standleft = False
+                self.standright = False
+                self.standdown = False
+                self.standup = True
         if keys[pygame.K_s]:
-            self.move(0, 1)
-            self.up = False
-            self.down = True
-            self.left = False
-            self.right = False
+            if self.standleft == False and self.standright == False and self.standup == False:
+                self.move(0, 1)
+                self.up = False
+                self.down = True
+                self.left = False
+                self.right = False
+                
+                self.standleft = False
+                self.standright = False
+                self.standdown = True
+                self.standup = False
         if keys[pygame.K_a]:
-            self.move(-1, 0)
-            self.up = False
-            self.down = False
-            self.left = True
-            self.right = False
+            if self.standdown == False and self.standright == False and self.standup == False:
+                self.move(-1, 0)
+                self.up = False
+                self.down = False
+                self.left = True
+                self.right = False
+
+                self.standleft = False
+                self.standright = False
+                self.standdown = True
+                self.standup = False
         if keys[pygame.K_d]:
-            self.move(1, 0)
-            self.up = False
-            self.down = False
-            self.left = False
-            self.right = True
+            if self.standleft == False and self.standdown == False and self.standup == False:
+                self.move(1, 0)
+                self.up = False
+                self.down = False
+                self.left = False
+                self.right = True
+                
+                self.standleft = False
+                self.standright = True
+                self.standdown = False
+                self.standup = False
         else:
             self.standing = True
+            self.standleft = False
+            self.standright = False
+            self.standup = False
+            self.standdown = False
             self.walkCount = 0
 
     def collide_with_walls(self, dx=0, dy=0):
